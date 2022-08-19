@@ -1,19 +1,16 @@
-import { MantineProvider, Text, Button, Stack } from "@mantine/core";
+import { MantineProvider, Button, Stack } from "@mantine/core";
 import { theme } from "./theme";
-import { Feature, FeaturesGrid, MOCKDATA } from "./components/Feature";
-import { IconTestPipe } from "@tabler/icons";
+import { FeaturesGrid, MOCKDATA } from "./components/Feature";
 
-export default function App() {
+const App = () => {
   return (
     <MantineProvider theme={theme} withGlobalStyles withNormalizeCSS>
       <Stack align="center" mt={50}>
-        <Text size="xl" weight={500}>
-          Welcome to Mantine!
-        </Text>
-        <Button>Click the button</Button>
+        {/* <Button>Click the button</Button> */}
+        <FeaturesGrid title={"Potion"} description={""} data={MOCKDATA}/>
       </Stack>
-      <Feature icon={IconTestPipe} title={"Tut"} description={"des"} />
-      <FeaturesGrid title={"data"} description={"des"} data={MOCKDATA}/>
     </MantineProvider>
   );
 }
+
+export default App;
