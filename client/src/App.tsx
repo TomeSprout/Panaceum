@@ -1,6 +1,6 @@
 import { MantineProvider, Button, Stack } from "@mantine/core";
 import { theme } from "./theme";
-import { FeaturesGrid, MOCKDATA } from "./components/Feature";
+import { FeaturesGrid, MOCKDATA } from "./components/FeatureExample";
 
 const App = () => {
   return (
