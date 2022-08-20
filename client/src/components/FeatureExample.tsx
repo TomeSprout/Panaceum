@@ -7,33 +7,35 @@ import {
   useMantineTheme,
   createStyles,
   Button,
-} from '@mantine/core';
-import { IconCookie, IconMessage2, IconLock, TablerIcon, IconTestPipe2, IconTestPipe, IconArrowRightCircle, IconCopyOff, IconFilter } from '@tabler/icons';
+} from "@mantine/core";
+import {
+  IconLock,
+  TablerIcon,
+  IconArrowRightCircle,
+  IconCopyOff,
+  IconFilter,
+} from "@tabler/icons";
 
 export const MOCKDATA = [
   {
     icon: IconArrowRightCircle,
-    title: 'Sync',
-    description:
-      'Perform two-way sync between Notion and Todoist',
+    title: "Sync",
+    description: "Perform two-way sync between Notion and Todoist",
   },
   {
     icon: IconCopyOff,
-    title: 'Remove Duplicates',
-    description:
-      'Identify and remove duplicate entries within Notion',
+    title: "Remove Duplicates",
+    description: "Identify and remove duplicate entries within Notion",
   },
   {
     icon: IconFilter,
-    title: 'Log Filters',
-    description:
-      'Collect all filters from Notion',
+    title: "Log Filters",
+    description: "Collect all filters from Notion",
   },
   {
     icon: IconLock,
-    title: 'Lock Database',
-    description:
-      'Lock and unlock databases within Notion',
+    title: "Lock Database",
+    description: "Lock and unlock databases within Notion",
   },
 ];
 
@@ -50,12 +52,22 @@ export function Feature({ icon: Icon, title, description }: FeatureProps) {
       <ThemeIcon variant="light" size={40} radius={40}>
         <Icon size={25} stroke={2.25} />
       </ThemeIcon>
-      <Text style={{ marginTop: theme.spacing.sm, marginBottom: 7 }}  size={"xl"}>{title}</Text>
+      <Text
+        style={{ marginTop: theme.spacing.sm, marginBottom: 7 }}
+        size={"xl"}
+      >
+        {title}
+      </Text>
       <Text size="md" color="dimmed" style={{ lineHeight: 1.6 }}>
         {description}
       </Text>
       <br />
-      <Button variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }} size="xl" compact>
+      <Button
+        variant="gradient"
+        gradient={{ from: "indigo", to: "cyan", deg: 90 }}
+        size="xl"
+        compact
+      >
         {title}
       </Button>
     </div>
@@ -72,19 +84,19 @@ const useStyles = createStyles((theme) => ({
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     fontWeight: 900,
     marginBottom: theme.spacing.md,
-    textAlign: 'center',
+    textAlign: "center",
 
-    [theme.fn.smallerThan('sm')]: {
+    [theme.fn.smallerThan("sm")]: {
       fontSize: 28,
-      textAlign: 'left',
+      textAlign: "left",
     },
   },
 
   description: {
-    textAlign: 'center',
+    textAlign: "center",
 
-    [theme.fn.smallerThan('sm')]: {
-      textAlign: 'left',
+    [theme.fn.smallerThan("sm")]: {
+      textAlign: "left",
     },
   },
 }));
@@ -95,9 +107,15 @@ interface FeaturesGridProps {
   data?: FeatureProps[];
 }
 
-export function FeaturesGrid({ title, description, data = MOCKDATA }: FeaturesGridProps) {
+export function FeaturesGrid({
+  title,
+  description,
+  data = MOCKDATA,
+}: FeaturesGridProps) {
   const { classes, theme } = useStyles();
-  const features = data.map((feature, index) => <Feature {...feature} key={index} />);
+  const features = data.map((feature, index) => (
+    <Feature {...feature} key={index} />
+  ));
 
   return (
     <Container className={classes.wrapper}>
@@ -114,10 +132,10 @@ export function FeaturesGrid({ title, description, data = MOCKDATA }: FeaturesGr
         cols={2}
         spacing={theme.spacing.xl * 5}
         breakpoints={[
-          { maxWidth: 980, cols: 2, spacing: 'xl' },
-          { maxWidth: 755, cols: 1, spacing: 'xl' },
+          { maxWidth: 980, cols: 2, spacing: "xl" },
+          { maxWidth: 755, cols: 1, spacing: "xl" },
         ]}
-        >
+      >
         {features}
       </SimpleGrid>
     </Container>
