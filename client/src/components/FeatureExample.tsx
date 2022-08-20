@@ -6,39 +6,34 @@ import {
   SimpleGrid,
   useMantineTheme,
   createStyles,
+  Button,
 } from '@mantine/core';
-import { IconGauge, IconCookie, IconUser, IconMessage2, IconLock, TablerIcon } from '@tabler/icons';
+import { IconCookie, IconMessage2, IconLock, TablerIcon, IconTestPipe2, IconTestPipe, IconArrowRightCircle, IconCopyOff, IconFilter } from '@tabler/icons';
 
 export const MOCKDATA = [
   {
-    icon: IconGauge,
-    title: 'Extreme performance',
+    icon: IconArrowRightCircle,
+    title: 'Sync',
     description:
-      'This dust is actually a powerful poison that will even make a pro wrestler sick, Regice cloaks itself with frigid air of -328 degrees Fahrenheit',
+      'Perform two-way sync between Notion and Todoist',
   },
   {
-    icon: IconUser,
-    title: 'Privacy focused',
+    icon: IconCopyOff,
+    title: 'Remove Duplicates',
     description:
-      'People say it can run at the same speed as lightning striking, Its icy body is so cold, it will not melt even if it is immersed in magma',
+      'Identify and remove duplicate entries within Notion',
   },
   {
-    icon: IconCookie,
-    title: 'No third parties',
+    icon: IconFilter,
+    title: 'Log Filters',
     description:
-      'They’re popular, but they’re rare. Trainers who show them off recklessly may be targeted by thieves',
+      'Collect all filters from Notion',
   },
   {
     icon: IconLock,
-    title: 'Secure by default',
+    title: 'Lock Database',
     description:
-      'Although it still can’t fly, its jumping power is outstanding, in Alola the mushrooms on Paras don’t grow up quite right',
-  },
-  {
-    icon: IconMessage2,
-    title: '24/7 Support',
-    description:
-      'Rapidash usually can be seen casually cantering in the fields and plains, Skitty is known to chase around after its own tail',
+      'Lock and unlock databases within Notion',
   },
 ];
 
@@ -53,12 +48,16 @@ export function Feature({ icon: Icon, title, description }: FeatureProps) {
   return (
     <div>
       <ThemeIcon variant="light" size={40} radius={40}>
-        <Icon size={20} stroke={1.5} />
+        <Icon size={25} stroke={2.25} />
       </ThemeIcon>
-      <Text style={{ marginTop: theme.spacing.sm, marginBottom: 7 }}>{title}</Text>
-      <Text size="sm" color="dimmed" style={{ lineHeight: 1.6 }}>
+      <Text style={{ marginTop: theme.spacing.sm, marginBottom: 7 }}  size={"xl"}>{title}</Text>
+      <Text size="md" color="dimmed" style={{ lineHeight: 1.6 }}>
         {description}
       </Text>
+      <br />
+      <Button variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }} size="xl" compact>
+        {title}
+      </Button>
     </div>
   );
 }
@@ -112,13 +111,13 @@ export function FeaturesGrid({ title, description, data = MOCKDATA }: FeaturesGr
 
       <SimpleGrid
         mt={60}
-        cols={3}
-        spacing={theme.spacing.xl * 2}
+        cols={2}
+        spacing={theme.spacing.xl * 5}
         breakpoints={[
           { maxWidth: 980, cols: 2, spacing: 'xl' },
           { maxWidth: 755, cols: 1, spacing: 'xl' },
         ]}
-      >
+        >
         {features}
       </SimpleGrid>
     </Container>
