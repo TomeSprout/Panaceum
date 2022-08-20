@@ -1,12 +1,13 @@
 import { MantineProvider, Button, Stack } from "@mantine/core";
 import { theme } from "./theme";
 import { FeaturesGrid, MOCKDATA } from "./components/FeatureExample";
+import APISetup from "./components/APISetup";
 
 const App = () => {
   return (
     <MantineProvider theme={theme} withGlobalStyles withNormalizeCSS>
       <Stack align="center" mt={50}>
-        {/* <Button>Click the button</Button> */}
+        <APISetup />
         <FeaturesGrid title={"Potion"} description={""} data={MOCKDATA}/>
       </Stack>
     </MantineProvider>
