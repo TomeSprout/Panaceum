@@ -49,7 +49,7 @@ export function Feature({ icon: Icon, title, description }: FeatureProps) {
   const theme = useMantineTheme();
   return (
     <div>
-      <ThemeIcon variant="light" size={40} radius={40}>
+      <ThemeIcon variant="gradient" gradient={{ from: 'indigo', to: 'cyan', deg: 90 }} size={35} radius={"md"}>
         <Icon size={25} stroke={2.25} />
       </ThemeIcon>
       <Text
