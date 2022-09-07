@@ -1,0 +1,21 @@
+{
+  "name": "potion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "fe": "cd client; npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TomeSprout/potion.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TomeSprout/potion/issues"
+  },
+  "homepage": "https://github.com/TomeSprout/potion#readme"
+}
