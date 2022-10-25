@@ -11,16 +11,18 @@ const checkOutOfOrder = (operand: any, testOperand: any): boolean => {
 
   operand.forEach((element: any) => {
     const pageMultiSelect = element.properties.Genre.multi_select
-    pageMultiSelect.forEach((multiSelectOption: any, multiSelectOptionIndex: any) => {
-      testOperand.forEach((optionElement: any, optionIndex: any) => {
-        if (multiSelectOption.id = optionElement.id) {
-          if (multiSelectOptionIndex > optionIndex) {
-            outOfOrder = true
-            multiSelectOption.outOfOrder = true;
+    pageMultiSelect.forEach(
+      (multiSelectOption: any, multiSelectOptionIndex: any) => {
+        testOperand.forEach((optionElement: any, optionIndex: any) => {
+          if ((multiSelectOption.id = optionElement.id)) {
+            if (multiSelectOptionIndex > optionIndex) {
+              outOfOrder = true
+              multiSelectOption.outOfOrder = true
+            }
           }
-        }
-      })
-    })
+        })
+      }
+    )
   })
 
   return outOfOrder
@@ -29,15 +31,15 @@ const checkOutOfOrder = (operand: any, testOperand: any): boolean => {
 const OrganizeMultiSelects = async () => {
   const notion = new Client({ auth: process.env.NOTION_TOKEN })
   const databaseId: string = process.env.NOTION_DATABASE_ID as string
-  
+
   const { results }: { results: any } = await notion.databases.query({
     database_id: databaseId,
-    "filter": {
-      "property": "Genre",
-      "multi_select": {
-        "is_not_empty": true
-      }
-    }
+    filter: {
+      property: 'Genre',
+      multi_select: {
+        is_not_empty: true,
+      },
+    },
   })
 
   const options: any = await GetMultiSelectOptions()
@@ -47,7 +49,10 @@ const OrganizeMultiSelects = async () => {
     const currentMultiSelectOptions: any[] = []
     for (let index = 0, len = options.length; index < len; index++) {
       pageMultiSelect.forEach((multiSelectOption: any) => {
-        if (multiSelectOption.id === options[index].id && !currentMultiSelectOptions.includes(multiSelectOption)) {
+        if (
+          multiSelectOption.id === options[index].id &&
+          !currentMultiSelectOptions.includes(multiSelectOption)
+        ) {
           currentMultiSelectOptions.push(multiSelectOption)
         }
       })

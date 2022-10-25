@@ -42,7 +42,7 @@ const GetMultiSelectOptions = async () => {
   options.forEach((element) => {
     delete element.color
   })
-  
+
   return options
 }
 
