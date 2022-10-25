@@ -35,6 +35,11 @@ const OrganizeMultiSelects = async () => {
     name: StringRequest
     color?: SelectColor
   }
+
+  interface MultiSelectDatabasePropertyOptions {
+    options: Array<SelectPropertyResponse>
+    forEach(callback: (propertyOptionObject: SelectPropertyResponse) => void) : void
+  }
 }
 
 export default OrganizeMultiSelects
