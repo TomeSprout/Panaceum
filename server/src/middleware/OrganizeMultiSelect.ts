@@ -9,7 +9,7 @@ const OrganizeMultiSelects = async () => {
   const notion = new Client({ auth: process.env.NOTION_TOKEN })
   const databaseId: string = process.env.NOTION_DATABASE_ID as string
   
-  const { properties } = await notion.databases.retrieve({
+  const { properties }: { properties: any } = await notion.databases.retrieve({
     "database_id": databaseId,
   })
 
@@ -28,19 +28,6 @@ const OrganizeMultiSelects = async () => {
   //   console.log("new data added to file")
   // })
 
-  type MultiSelectDatabasePropertyConfigResponse = {
-    type: "multi_select";
-    multi_select: {
-        options: Array<Object>;
-    };
-    id: string;
-    name: string;
-  };
-
-  const opt: MultiSelectDatabasePropertyConfigResponse = properties.Genre
-  console.log(opt)
-
-  // const {multiSelect} = response.results[0].properties.Genre.multi_select
 }
 
 export default OrganizeMultiSelects
