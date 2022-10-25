@@ -5,6 +5,7 @@ import WriteToJSON from './WriteToJSON'
 
 dotenv.config()
 
+// ! Logic currently incorrect. DO NOT USE
 const checkOutOfOrder = (operand: any, testOperand: any): boolean => {
   let outOfOrder = false
 
