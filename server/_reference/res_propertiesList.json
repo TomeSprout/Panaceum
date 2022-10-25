@@ -1,0 +1,294 @@
+{
+    "Date Last Read": {
+        "date": {},
+        "id": "pZvp",
+        "name": "Date Last Read",
+        "type": "date"
+    },
+    "Genre": {
+        "id": "%7CrU%3D",
+        "multi_select": {
+            "options": [
+                {
+                    "color": "pink",
+                    "id": "2f9de4f4-f52b-463c-b6a2-05f33f372085",
+                    "name": "Romance"
+                },
+                {
+                    "color": "orange",
+                    "id": "f7ac77c8-e38c-4d53-b094-736e6d0345eb",
+                    "name": "Revenge"
+                },
+                {
+                    "color": "yellow",
+                    "id": "c863656e-ebdd-41a4-9554-47f83b563ab7",
+                    "name": "Isekai"
+                },
+                {
+                    "color": "yellow",
+                    "id": "80c4fb37-a915-4a42-80bc-77a96cd9575f",
+                    "name": "Magic"
+                },
+                {
+                    "color": "red",
+                    "id": "d455e6b2-7095-4f92-a41d-3f75394aac9a",
+                    "name": "Rags to Riches"
+                },
+                {
+                    "color": "default",
+                    "id": "28a5dbe5-f4be-47de-89e9-11b5013b6c51",
+                    "name": "Villainess"
+                },
+                {
+                    "color": "gray",
+                    "id": "7f8fdf97-87a3-4379-a44d-5d84d6da337c",
+                    "name": "Tensei"
+                },
+                {
+                    "color": "green",
+                    "id": "3c43e179-93fb-4371-81c4-418370ab9b53",
+                    "name": "Strong FL"
+                },
+                {
+                    "color": "purple",
+                    "id": "306b8a4f-cbc7-4ecc-ae94-7337a99222f3",
+                    "name": "Body Swap"
+                },
+                {
+                    "color": "blue",
+                    "id": "dfaaac75-91a3-42ed-ae18-cb60d0756e2e",
+                    "name": "Gore"
+                },
+                {
+                    "color": "brown",
+                    "id": "7f71f854-d18d-419b-b0eb-4471f134b12b",
+                    "name": "Female Knight"
+                },
+                {
+                    "color": "default",
+                    "id": "998ed2f1-96dc-45a8-873a-140a96c72a84",
+                    "name": "Action"
+                },
+                {
+                    "color": "yellow",
+                    "id": "441b786e-2fd3-43af-b18f-80a6f74647ed",
+                    "name": "Martial Arts"
+                },
+                {
+                    "color": "gray",
+                    "id": "7e63d065-b699-4ba1-bc8a-e389137dff63",
+                    "name": "Adventure"
+                },
+                {
+                    "color": "pink",
+                    "id": "38f30ca2-149d-4d28-9e05-51e1b8720831",
+                    "name": "Remarried"
+                },
+                {
+                    "color": "yellow",
+                    "id": "4c623c30-75d9-44cc-a145-a717c0c17285",
+                    "name": "Housewrecker"
+                }
+            ]
+        },
+        "name": "Genre",
+        "type": "multi_select"
+    },
+    "Image": {
+        "files": {},
+        "id": "ijLp",
+        "name": "Image",
+        "type": "files"
+    },
+    "Name": {
+        "id": "title",
+        "name": "Name",
+        "title": {},
+        "type": "title"
+    },
+    "Platform": {
+        "id": "AJNV",
+        "name": "Platform",
+        "select": {
+            "options": [
+                {
+                    "color": "yellow",
+                    "id": "ab0aebdc-1349-441a-ae0f-3015cdb3589a",
+                    "name": "Tapas"
+                },
+                {
+                    "color": "blue",
+                    "id": "76d7c2a7-34f1-414d-8016-008f99cd600b",
+                    "name": "Tappytoon"
+                },
+                {
+                    "color": "green",
+                    "id": "eb852891-5a57-4704-8f50-9edff1232167",
+                    "name": "Webtoon"
+                },
+                {
+                    "color": "red",
+                    "id": "bc4f0ff3-2e7f-4aa7-97be-fef07d543645",
+                    "name": "PocketComics"
+                },
+                {
+                    "color": "pink",
+                    "id": "0a34263d-9127-408f-9ba5-752bfccb582d",
+                    "name": "Lezhin"
+                },
+                {
+                    "color": "purple",
+                    "id": "84080c02-dad6-428c-b50e-cfe9021d8537",
+                    "name": "Manta"
+                }
+            ]
+        },
+        "type": "select"
+    },
+    "Progress": {
+        "id": "E%3Dhe",
+        "name": "Progress",
+        "status": {
+            "groups": [
+                {
+                    "color": "gray",
+                    "id": "9d041692-f1fc-4eec-93b1-fc210052e430",
+                    "name": "To-do",
+                    "option_ids": [
+                        "011fbb99-deda-4b40-8f09-4f2eff02c153",
+                        "eE<?"
+                    ]
+                },
+                {
+                    "color": "blue",
+                    "id": "e4f3e7f7-7243-45a4-a322-e6697cc1b093",
+                    "name": "In progress",
+                    "option_ids": [
+                        "r\\W?",
+                        "76557cbf-6876-4ec0-a218-0ad9853ae087",
+                        "j<OT",
+                        "@veW"
+                    ]
+                },
+                {
+                    "color": "green",
+                    "id": "47c81863-53d1-4fff-8d52-9e3525bc1977",
+                    "name": "Complete",
+                    "option_ids": [
+                        "8584f0a9-225a-46dc-a9e9-3e6f6c9110e7",
+                        "[}Q{"
+                    ]
+                }
+            ],
+            "options": [
+                {
+                    "color": "default",
+                    "id": "011fbb99-deda-4b40-8f09-4f2eff02c153",
+                    "name": "Not started"
+                },
+                {
+                    "color": "gray",
+                    "id": "eE<?",
+                    "name": "Restart"
+                },
+                {
+                    "color": "blue",
+                    "id": "76557cbf-6876-4ec0-a218-0ad9853ae087",
+                    "name": "Reading"
+                },
+                {
+                    "color": "purple",
+                    "id": "j<OT",
+                    "name": "Rereading"
+                },
+                {
+                    "color": "orange",
+                    "id": "r\\W?",
+                    "name": "Epilogue"
+                },
+                {
+                    "color": "pink",
+                    "id": "@veW",
+                    "name": "On Hold"
+                },
+                {
+                    "color": "green",
+                    "id": "8584f0a9-225a-46dc-a9e9-3e6f6c9110e7",
+                    "name": "Done"
+                },
+                {
+                    "color": "red",
+                    "id": "[}Q{",
+                    "name": "Dropped"
+                }
+            ]
+        },
+        "type": "status"
+    },
+    "Rating": {
+        "id": "%5D~%5B~",
+        "name": "Rating",
+        "select": {
+            "options": [
+                {
+                    "color": "purple",
+                    "id": "_vNt",
+                    "name": "🌟"
+                },
+                {
+                    "color": "purple",
+                    "id": "v\\m`",
+                    "name": "👀"
+                },
+                {
+                    "color": "default",
+                    "id": "VICB",
+                    "name": "Lukewarm"
+                },
+                {
+                    "color": "gray",
+                    "id": "cdde3a91-6f1f-4c32-8f08-e0bf55aed5f3",
+                    "name": "Smile"
+                }
+            ]
+        },
+        "type": "select"
+    },
+    "Read Count": {
+        "id": "sImo",
+        "name": "Read Count",
+        "number": {
+            "format": "number"
+        },
+        "type": "number"
+    },
+    "Status": {
+        "id": "IjLN",
+        "name": "Status",
+        "select": {
+            "options": [
+                {
+                    "color": "yellow",
+                    "id": "2bf818d8-c35c-41b8-8991-e045704a891f",
+                    "name": "In Progress"
+                },
+                {
+                    "color": "purple",
+                    "id": "2280f9d2-fb94-4dc0-b90b-ba9389e11955",
+                    "name": "Hiatus"
+                },
+                {
+                    "color": "green",
+                    "id": "20dfc73e-f232-4ba3-b423-ce895d98730b",
+                    "name": "Complete"
+                },
+                {
+                    "color": "red",
+                    "id": "4e9c0128-0916-4f03-a4a2-c9f14245fd2e",
+                    "name": "Cancelled"
+                }
+            ]
+        },
+        "type": "select"
+    }
+}
