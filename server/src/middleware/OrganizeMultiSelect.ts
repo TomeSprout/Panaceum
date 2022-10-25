@@ -45,9 +45,9 @@ const OrganizeMultiSelects = async () => {
     const pageMultiSelect = element.properties.Genre.multi_select
 
     const currentMultiSelectOptions: any[] = []
-    for (let i = 0, len = options.length; i < len; i++) {
+    for (let index = 0, len = options.length; index < len; index++) {
       pageMultiSelect.forEach((multiSelectOption: any) => {
-        if (multiSelectOption.id === options[i].id && !currentMultiSelectOptions.includes(multiSelectOption)) {
+        if (multiSelectOption.id === options[index].id && !currentMultiSelectOptions.includes(multiSelectOption)) {
           currentMultiSelectOptions.push(multiSelectOption)
         }
       })
