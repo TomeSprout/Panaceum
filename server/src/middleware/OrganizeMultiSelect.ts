@@ -28,6 +28,13 @@ const OrganizeMultiSelects = async () => {
   //   console.log("new data added to file")
   // })
 
+  type StringRequest = string
+  type SelectColor = "default" | "gray" | "brown" | "orange" | "yellow" | "green" | "blue" | "purple" | "pink" | "red"
+  type SelectPropertyResponse = {
+    id: StringRequest
+    name: StringRequest
+    color?: SelectColor
+  }
 }
 
 export default OrganizeMultiSelects
