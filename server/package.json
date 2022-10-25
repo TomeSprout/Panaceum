@@ -9,6 +9,7 @@
     "start": "ts-node src/index.ts",
     "typecheck": "tsc --noEmit",
     "build": "tsc",
+    "lint": "prettier --check .",
     "format": "prettier --write src/**/*.ts"
   },
   "keywords": [],
