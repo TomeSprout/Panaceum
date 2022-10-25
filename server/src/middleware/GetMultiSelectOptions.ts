@@ -27,22 +27,28 @@ const GetMultiSelectOptions = async () => {
     id: StringRequest
     name: StringRequest
     color?: SelectColor
+    order?: number
   }
 
   interface MultiSelectDatabasePropertyOptions {
     options: Array<SelectPropertyResponse>
     forEach(
-      callback: (propertyOptionObject: SelectPropertyResponse) => void
+      callback: (propertyOptionObject: SelectPropertyResponse, propertyOptionIndex: number) => void
     ): void
   }
 
-  const opt: MultiSelectDatabasePropertyOptions =
+  const options: MultiSelectDatabasePropertyOptions =
     properties.Genre.multi_select.options
-  opt.forEach((element) => {
+  options.forEach((element, index) => {
+    let orderNumber = 0
+    if (index || index >= 0) {
+      orderNumber = index + 1
+    }
+    element.order = orderNumber
     delete element.color
   })
   
-  return opt
+  return options
 }
 
 export default GetMultiSelectOptions
