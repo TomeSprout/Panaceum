@@ -1,5 +1,6 @@
 import { Client } from '@notionhq/client'
 import dotenv from 'dotenv'
+import GetMultiSelectOptions from './GetMultiSelectOptions'
 
 const fs = require('fs')
 
@@ -8,57 +9,25 @@ dotenv.config()
 const OrganizeMultiSelects = async () => {
   const notion = new Client({ auth: process.env.NOTION_TOKEN })
   const databaseId: string = process.env.NOTION_DATABASE_ID as string
-
-  const { properties }: { properties: any } = await notion.databases.retrieve({
+  
+  const { results }: { results: any } = await notion.databases.query({
     database_id: databaseId,
+    "filter": {
+      "property": "Genre",
+      "multi_select": {
+        "is_not_empty": true
+      }
+    }
   })
 
-  // Filter for DB Query
-  //
-  // "filter": {
-  //   "property": "Genre",
-  //   "multi_select": {
-  //     "is_not_empty": true
-  //   }
-  // }
-
-  // const stringifyResponse = JSON.stringify(properties)
-  // fs.writeFile('res.json', stringifyResponse, (err: Error) => {
-  //   if (err) throw err;
-  //   console.log("new data added to file")
-  // })
-
-  type StringRequest = string
-  type SelectColor =
-    | 'default'
-    | 'gray'
-    | 'brown'
-    | 'orange'
-    | 'yellow'
-    | 'green'
-    | 'blue'
-    | 'purple'
-    | 'pink'
-    | 'red'
-  type SelectPropertyResponse = {
-    id: StringRequest
-    name: StringRequest
-    color?: SelectColor
-  }
-
-  interface MultiSelectDatabasePropertyOptions {
-    options: Array<SelectPropertyResponse>
-    forEach(
-      callback: (propertyOptionObject: SelectPropertyResponse) => void
-    ): void
-  }
-
-  const opt: MultiSelectDatabasePropertyOptions =
-    properties.Genre.multi_select.options
-  opt.forEach((element) => {
-    delete element.color
+  const options = await GetMultiSelectOptions()
+  
+  const stringifyResponse = JSON.stringify(results)
+  fs.writeFile('res.json', stringifyResponse, (err: Error) => {
+    if (err) throw err;
+    console.log("New response data added to file")
   })
-  console.log(`Opt:`, opt)
+
 }
 
 export default OrganizeMultiSelects
