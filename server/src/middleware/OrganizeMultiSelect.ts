@@ -1,8 +1,7 @@
 import { Client } from '@notionhq/client'
 import dotenv from 'dotenv'
 import GetMultiSelectOptions from './GetMultiSelectOptions'
-
-const fs = require('fs')
+import WriteToJSON from './WriteToJSON'
 
 dotenv.config()
 
@@ -33,6 +32,8 @@ const OrganizeMultiSelects = async () => {
       })
     }
   })
+
+  WriteToJSON(results)
   
   // CHECK IF MULTI-SELECT OPTIONS ARE OUT OF ORDER
   
@@ -50,15 +51,6 @@ const OrganizeMultiSelects = async () => {
   //     })
   //   })
   // })
-
-  // WRITE TO JSON FILE
-
-  // const stringifyResponse = JSON.stringify(results)
-  // fs.writeFile('res.json', stringifyResponse, (err: Error) => {
-  //   if (err) throw err;
-  //   console.log("New response data added to file")
-  // })
-
 }
 
 export default OrganizeMultiSelects
