@@ -20,16 +20,44 @@ const OrganizeMultiSelects = async () => {
     }
   })
 
-  const options = await GetMultiSelectOptions()
-  console.log(`Options ->`, options)
+  const options: any = await GetMultiSelectOptions()
+  results.forEach((element: any) => {
+    const pageMultiSelect = element.properties.Genre.multi_select
+
+    const currentMultiSelectOptions: any[] = []
+    for (let i = 0, len = options.length; i < len; i++) {
+      pageMultiSelect.forEach((multiSelectOption: any) => {
+        if (multiSelectOption.id === options[i].id && !currentMultiSelectOptions.includes(multiSelectOption)) {
+          currentMultiSelectOptions.push(multiSelectOption)
+        }
+      })
+    }
+  })
+  
+  // CHECK IF MULTI-SELECT OPTIONS ARE OUT OF ORDER
+  
+  // let outOfOrder = false
+  // results.forEach((element: any) => {
+  //   const pageMultiSelect = element.properties.Genre.multi_select
+  //   pageMultiSelect.forEach((multiSelectOption: any, multiSelectOptionIndex: any) => {
+  //     options.forEach((optionElement, optionIndex) => {
+  //       if (multiSelectOption.id = optionElement.id) {
+  //         if (multiSelectOptionIndex > optionIndex) {
+  //           outOfOrder = true
+  //           multiSelectOption.outOfOrder = true;
+  //         }
+  //       }
+  //     })
+  //   })
+  // })
+
+  // WRITE TO JSON FILE
 
   // const stringifyResponse = JSON.stringify(results)
   // fs.writeFile('res.json', stringifyResponse, (err: Error) => {
   //   if (err) throw err;
   //   console.log("New response data added to file")
   // })
-
-  // forEach element.properties.Genre.multi_select.[options]
 
 }
 
