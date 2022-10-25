@@ -1,7 +1,7 @@
-import OrganizeMultiSelects from "./middleware/OrganizeMultiSelect"
+import OrganizeMultiSelects from './middleware/OrganizeMultiSelect'
 
 const main = async () => {
-  await OrganizeMultiSelects();
+  await OrganizeMultiSelects()
 }
 
 main()

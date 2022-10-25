@@ -1,16 +1,16 @@
-import { Client } from "@notionhq/client"
-import dotenv from "dotenv"
+import { Client } from '@notionhq/client'
+import dotenv from 'dotenv'
 
-const fs = require('fs');
+const fs = require('fs')
 
 dotenv.config()
 
 const OrganizeMultiSelects = async () => {
   const notion = new Client({ auth: process.env.NOTION_TOKEN })
   const databaseId: string = process.env.NOTION_DATABASE_ID as string
-  
+
   const { properties }: { properties: any } = await notion.databases.retrieve({
-    "database_id": databaseId,
+    database_id: databaseId,
   })
 
   // Filter for DB Query
@@ -29,7 +29,17 @@ const OrganizeMultiSelects = async () => {
   // })
 
   type StringRequest = string
-  type SelectColor = "default" | "gray" | "brown" | "orange" | "yellow" | "green" | "blue" | "purple" | "pink" | "red"
+  type SelectColor =
+    | 'default'
+    | 'gray'
+    | 'brown'
+    | 'orange'
+    | 'yellow'
+    | 'green'
+    | 'blue'
+    | 'purple'
+    | 'pink'
+    | 'red'
   type SelectPropertyResponse = {
     id: StringRequest
     name: StringRequest
@@ -38,15 +48,17 @@ const OrganizeMultiSelects = async () => {
 
   interface MultiSelectDatabasePropertyOptions {
     options: Array<SelectPropertyResponse>
-    forEach(callback: (propertyOptionObject: SelectPropertyResponse) => void) : void
+    forEach(
+      callback: (propertyOptionObject: SelectPropertyResponse) => void
+    ): void
   }
 
-  const opt: MultiSelectDatabasePropertyOptions = properties.Genre.multi_select.options
+  const opt: MultiSelectDatabasePropertyOptions =
+    properties.Genre.multi_select.options
   opt.forEach((element) => {
     delete element.color
   })
   console.log(`Opt:`, opt)
-
 }
 
 export default OrganizeMultiSelects
