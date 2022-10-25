@@ -33,18 +33,13 @@ const GetMultiSelectOptions = async () => {
   interface MultiSelectDatabasePropertyOptions {
     options: Array<SelectPropertyResponse>
     forEach(
-      callback: (propertyOptionObject: SelectPropertyResponse, propertyOptionIndex: number) => void
+      callback: (propertyOptionObject: SelectPropertyResponse) => void
     ): void
   }
 
   const options: MultiSelectDatabasePropertyOptions =
     properties.Genre.multi_select.options
-  options.forEach((element, index) => {
-    let orderNumber = 0
-    if (index || index >= 0) {
-      orderNumber = index + 1
-    }
-    element.order = orderNumber
+  options.forEach((element) => {
     delete element.color
   })
   
