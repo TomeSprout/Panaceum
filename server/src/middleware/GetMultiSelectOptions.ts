@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const OrganizeMultiSelects = async () => {
+const GetMultiSelectOptions = async () => {
   const notion = new Client({ auth: process.env.NOTION_TOKEN })
   const databaseId: string = process.env.NOTION_DATABASE_ID as string
 
@@ -44,4 +44,4 @@ const OrganizeMultiSelects = async () => {
   console.log(`Opt:`, opt)
 }
 
-export default OrganizeMultiSelects
+export default GetMultiSelectOptions
