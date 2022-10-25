@@ -40,6 +40,13 @@ const OrganizeMultiSelects = async () => {
     options: Array<SelectPropertyResponse>
     forEach(callback: (propertyOptionObject: SelectPropertyResponse) => void) : void
   }
+
+  const opt: MultiSelectDatabasePropertyOptions = properties.Genre.multi_select.options
+  opt.forEach((element) => {
+    delete element.color
+  })
+  console.log(`Opt:`, opt)
+
 }
 
 export default OrganizeMultiSelects
