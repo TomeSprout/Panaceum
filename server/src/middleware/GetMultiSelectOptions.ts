@@ -41,7 +41,8 @@ const GetMultiSelectOptions = async () => {
   opt.forEach((element) => {
     delete element.color
   })
-  console.log(`Opt:`, opt)
+  
+  return opt
 }
 
 export default GetMultiSelectOptions
