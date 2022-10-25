@@ -21,12 +21,15 @@ const OrganizeMultiSelects = async () => {
   })
 
   const options = await GetMultiSelectOptions()
-  
-  const stringifyResponse = JSON.stringify(results)
-  fs.writeFile('res.json', stringifyResponse, (err: Error) => {
-    if (err) throw err;
-    console.log("New response data added to file")
-  })
+  console.log(`Options ->`, options)
+
+  // const stringifyResponse = JSON.stringify(results)
+  // fs.writeFile('res.json', stringifyResponse, (err: Error) => {
+  //   if (err) throw err;
+  //   console.log("New response data added to file")
+  // })
+
+  // forEach element.properties.Genre.multi_select.[options]
 
 }
 
