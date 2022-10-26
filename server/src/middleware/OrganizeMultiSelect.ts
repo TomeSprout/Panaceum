@@ -43,6 +43,7 @@ const OrganizeMultiSelects = async () => {
   })
 
   const options: any = await GetMultiSelectOptions()
+
   results.forEach((element: any) => {
     const pageMultiSelect = element.properties.Genre.multi_select
 

@@ -39,6 +39,7 @@ const GetMultiSelectOptions = async () => {
 
   const options: MultiSelectDatabasePropertyOptions =
     properties.Genre.multi_select.options
+
   options.forEach((element) => {
     delete element.color
   })
