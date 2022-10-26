@@ -28,6 +28,25 @@ const checkOutOfOrder = (operand: any, testOperand: any): boolean => {
   return outOfOrder
 }
 
+const updateMultiSelectOrder = async (pageId: string, propertyName: string) => {
+  const notion = new Client({ auth: process.env.NOTION_TOKEN })
+  const response = await notion.pages.update({
+    pageId: pageId,
+    properties: {
+      [propertyName]: {
+        multi_select: [
+          id,
+          name,
+          color,
+        ],
+        type: "multi_select",
+      },
+    },
+  })
+
+  console.log(response)
+}
+
 const OrganizeMultiSelects = async () => {
   const notion = new Client({ auth: process.env.NOTION_TOKEN })
   const databaseId: string = process.env.NOTION_DATABASE_ID as string
