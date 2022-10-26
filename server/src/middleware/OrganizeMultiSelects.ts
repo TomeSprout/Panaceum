@@ -1,9 +1,9 @@
 import { Client } from '@notionhq/client'
-import dotenv from 'dotenv'
+import { config } from "dotenv"
 import GetMultiSelectOptions from './GetMultiSelectOptions'
 import WriteToJSON from './WriteToJSON'
 
-dotenv.config()
+config()
 
 // ! Logic currently incorrect. DO NOT USE
 const checkOutOfOrder = (operand: any, testOperand: any): boolean => {
