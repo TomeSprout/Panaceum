@@ -3,9 +3,10 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const OrganizeMultiSelects = async () => {
+const GetMultiSelectOptions = async () => {
   const notion = new Client({ auth: process.env.NOTION_TOKEN })
   const databaseId: string = process.env.NOTION_DATABASE_ID as string
+  const multiSelectPropertyName: string = 'Genre'
 
   const { properties }: { properties: any } = await notion.databases.retrieve({
     database_id: databaseId,
@@ -27,6 +28,7 @@ const OrganizeMultiSelects = async () => {
     id: StringRequest
     name: StringRequest
     color?: SelectColor
+    order?: number
   }
 
   interface MultiSelectDatabasePropertyOptions {
@@ -36,12 +38,14 @@ const OrganizeMultiSelects = async () => {
     ): void
   }
 
-  const opt: MultiSelectDatabasePropertyOptions =
-    properties.Genre.multi_select.options
-  opt.forEach((element) => {
+  const options: MultiSelectDatabasePropertyOptions =
+    properties[multiSelectPropertyName].multi_select.options
+
+  options.forEach((element) => {
     delete element.color
   })
-  console.log(`Opt:`, opt)
+
+  return options
 }
 
-export default OrganizeMultiSelects
+export default GetMultiSelectOptions

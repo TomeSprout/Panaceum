@@ -1,7 +1,9 @@
 // @ts-nocheck
 
 import { Client } from '@notionhq/client'
-import dotenv from 'dotenv'
+import { config } from 'dotenv'
+
+config()
 
 import {
   GetPagePropertyResponse,
