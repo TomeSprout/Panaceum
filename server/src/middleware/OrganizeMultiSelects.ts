@@ -28,14 +28,12 @@ const checkOutOfOrder = (operand: any, testOperand: any): boolean => {
   return outOfOrder
 }
 
-const sortMultiSelectOptions = async (results: any, options: any) => {
+const sortMultiSelectOptions = (multiSelectOptions: [], options: any) => {
   const newMultiSelectOptions: any[] = []
   
-  results.forEach((element: any) => {
-    const pageMultiSelect = element.properties.Genre.multi_select
-
+  multiSelectOptions.forEach((element: any) => {
     for (let index = 0, len = options.length; index < len; index++) {
-      pageMultiSelect.forEach((multiSelectOption: any) => {
+      multiSelectOptions.forEach((multiSelectOption: any) => {
         if (
           multiSelectOption.id === options[index].id &&
           !newMultiSelectOptions.includes(multiSelectOption)
@@ -51,7 +49,7 @@ const sortMultiSelectOptions = async (results: any, options: any) => {
 
 const updateMultiSelectOptions = async (
   currentPageId: string,
-  propertyName: string = 'Genre',
+  propertyName: string,
   updatedOptionArray: any[]
 ) => {
   const notion = new Client({ auth: process.env.NOTION_TOKEN })
@@ -66,26 +64,36 @@ const updateMultiSelectOptions = async (
     },
   })
 
-  console.log(response)
+  return response
 }
 
 const OrganizeMultiSelects = async () => {
   const notion = new Client({ auth: process.env.NOTION_TOKEN })
   const databaseId: string = process.env.NOTION_DATABASE_ID as string
+  const multiSelectPropertyName: string = 'Genre'
 
   const { results }: { results: any } = await notion.databases.query({
     database_id: databaseId,
     filter: {
-      property: 'Genre',
+      property: multiSelectPropertyName,
       multi_select: {
         is_not_empty: true,
       },
     },
   })
 
-  const options: any = await GetMultiSelectOptions()
+  const optionsComparator: any = await GetMultiSelectOptions()
 
-  WriteToJSON(results)
+  results.forEach(async (element: any) => {
+    const multiSelectOptions = element.properties[multiSelectPropertyName].multi_select
+    const updatedOptions = sortMultiSelectOptions(
+      multiSelectOptions,
+      optionsComparator,
+    )
+    let newResponse = await updateMultiSelectOptions(element.id, multiSelectPropertyName, updatedOptions)
+    WriteToJSON(newResponse)
+  })
+
 }
 
 export default OrganizeMultiSelects
