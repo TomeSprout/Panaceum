@@ -28,7 +28,28 @@ const checkOutOfOrder = (operand: any, testOperand: any): boolean => {
   return outOfOrder
 }
 
-const updateMultiSelectOrder = async (
+const sortMultiSelectOptions = async (results: any, options: any) => {
+  const newMultiSelectOptions: any[] = []
+  
+  results.forEach((element: any) => {
+    const pageMultiSelect = element.properties.Genre.multi_select
+
+    for (let index = 0, len = options.length; index < len; index++) {
+      pageMultiSelect.forEach((multiSelectOption: any) => {
+        if (
+          multiSelectOption.id === options[index].id &&
+          !newMultiSelectOptions.includes(multiSelectOption)
+        ) {
+          newMultiSelectOptions.push(multiSelectOption)
+        }
+      })
+    }
+  })
+
+  return newMultiSelectOptions
+}
+
+const updateMultiSelectOptions = async (
   currentPageId: string,
   propertyName: string = 'Genre',
   updatedOptionArray: any[]
@@ -63,22 +84,6 @@ const OrganizeMultiSelects = async () => {
   })
 
   const options: any = await GetMultiSelectOptions()
-
-  results.forEach((element: any) => {
-    const pageMultiSelect = element.properties.Genre.multi_select
-
-    const currentMultiSelectOptions: any[] = []
-    for (let index = 0, len = options.length; index < len; index++) {
-      pageMultiSelect.forEach((multiSelectOption: any) => {
-        if (
-          multiSelectOption.id === options[index].id &&
-          !currentMultiSelectOptions.includes(multiSelectOption)
-        ) {
-          currentMultiSelectOptions.push(multiSelectOption)
-        }
-      })
-    }
-  })
 
   WriteToJSON(results)
 }
