@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import { Client } from '@notionhq/client'
-import { config } from "dotenv"
+import { config } from 'dotenv'
 
 config()
 

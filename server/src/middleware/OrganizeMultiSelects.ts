@@ -1,5 +1,5 @@
 import { Client } from '@notionhq/client'
-import { config } from "dotenv"
+import { config } from 'dotenv'
 import GetMultiSelectOptions from './GetMultiSelectOptions'
 import WriteToJSON from './WriteToJSON'
 
@@ -28,14 +28,18 @@ const checkOutOfOrder = (operand: any, testOperand: any): boolean => {
   return outOfOrder
 }
 
-const updateMultiSelectOrder = async (currentPageId: string, propertyName: string = 'Genre', updatedOptionArray: any[]) => {
+const updateMultiSelectOrder = async (
+  currentPageId: string,
+  propertyName: string = 'Genre',
+  updatedOptionArray: any[]
+) => {
   const notion = new Client({ auth: process.env.NOTION_TOKEN })
 
   const response = await notion.pages.update({
     page_id: currentPageId,
     properties: {
       [propertyName]: {
-        type: "multi_select",
+        type: 'multi_select',
         multi_select: updatedOptionArray,
       },
     },
