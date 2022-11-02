@@ -30,7 +30,7 @@ const checkOutOfOrder = (operand: any, testOperand: any): boolean => {
 
 const sortMultiSelectOptions = (multiSelectOptions: [], options: any) => {
   const newMultiSelectOptions: any[] = []
-  
+
   multiSelectOptions.forEach((element: any) => {
     for (let index = 0, len = options.length; index < len; index++) {
       multiSelectOptions.forEach((multiSelectOption: any) => {
@@ -85,15 +85,19 @@ const OrganizeMultiSelects = async () => {
   const optionsComparator: any = await GetMultiSelectOptions()
 
   results.forEach(async (element: any) => {
-    const multiSelectOptions = element.properties[multiSelectPropertyName].multi_select
+    const multiSelectOptions =
+      element.properties[multiSelectPropertyName].multi_select
     const updatedOptions = sortMultiSelectOptions(
       multiSelectOptions,
-      optionsComparator,
+      optionsComparator
     )
-    let newResponse = await updateMultiSelectOptions(element.id, multiSelectPropertyName, updatedOptions)
+    let newResponse = await updateMultiSelectOptions(
+      element.id,
+      multiSelectPropertyName,
+      updatedOptions
+    )
     WriteToJSON(newResponse)
   })
-
 }
 
 export default OrganizeMultiSelects
