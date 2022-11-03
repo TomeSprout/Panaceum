@@ -12,7 +12,24 @@ const RemoveEmptyEntries = async () => {
     database_id: databaseId,
   })
 
-  WriteToJSON(results)
+  const emptyEntries: any[] = []
+
+  results.forEach((element: any) => {
+    const properties = Object.entries(element.properties)
+    properties.forEach((property: any) => {
+      if (property[1].id === 'title' || property[1].type === 'title') {
+        if (
+          property[1].title.length === 0 ||
+          property[1].title[0].plain_text.includes(' ', 0)
+        ) {
+          console.log(property)
+          emptyEntries.push(element)
+        }
+      }
+    })
+  })
+
+  WriteToJSON(emptyEntries)
 }
 
 export default RemoveEmptyEntries
