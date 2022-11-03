@@ -10,12 +10,6 @@ const RemoveEmptyEntries = async () => {
 
   const { results }: { results: any } = await notion.databases.query({
     database_id: databaseId,
-    filter: {
-      property: "title",
-      title: {
-        is_empty: true
-      }
-    },
   })
 
   WriteToJSON(results)
