@@ -3,9 +3,9 @@ import { config } from 'dotenv'
 
 config()
 
-const containsAlphanumerics = (str: string | undefined) => {
+const isNotEmpty = (str: string | undefined) => {
   if (str !== undefined) {
-    return /[a-zA-Z0-9]/.test(str)
+    return /[a-zA-Z0-9\\\/\.\[\]\^\$\+\-\*\?\|\(\)!@#%&{};:'",.<>?~`_=\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff66-\uff9f\u3131-\uD79D]/.test(str)
   }
   return
 }
@@ -26,7 +26,7 @@ const RemoveEmptyEntries = async () => {
       if (property[1].id === 'title' || property[1].type === 'title') {
         if (
           property[1].title.length === 0 ||
-          !containsAlphanumerics(property[1].title[0].plain_text)
+          !isNotEmpty(property[1].title[0].plain_text)
         ) {
           emptyEntries.push(element)
 
