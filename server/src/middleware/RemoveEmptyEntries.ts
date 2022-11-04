@@ -12,9 +12,10 @@ const isNotEmpty = (str: string | undefined) => {
   const checkCjkIdeographs = /[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]/
   const checkJapaneseHiraganaKatakana = /[\u3040-\u30ff\uff66-\uff9f]/
   const checkKoreanHangul = /[\u3131-\uD79D]/
+  const fullRegExpCheck = /[a-zA-Z0-9\\\/\.\[\]\^\$\+\-\*\?\|\(\)!@#%&{};:'",.<>?~`_=⌘⌥⌃⇧⇪\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff66-\uff9f\u3131-\uD79D]/
 
   if (str !== undefined) {
-    return /[a-zA-Z0-9\\\/\.\[\]\^\$\+\-\*\?\|\(\)!@#%&{};:'",.<>?~`_=\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff66-\uff9f\u3131-\uD79D]/.test(str)
+    return fullRegExpCheck.test(str)
   }
   return
 }
