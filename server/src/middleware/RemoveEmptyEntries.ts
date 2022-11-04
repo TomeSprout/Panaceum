@@ -1,6 +1,5 @@
 import { Client } from '@notionhq/client'
 import { config } from 'dotenv'
-import WriteToJSON from './WriteToJSON'
 
 config()
 
@@ -29,14 +28,12 @@ const RemoveEmptyEntries = async () => {
           property[1].title.length === 0 ||
           !containsAlphanumerics(property[1].title[0].plain_text)
         ) {
-          console.log(property)
           emptyEntries.push(element)
         }
       }
     })
   })
 
-  WriteToJSON(emptyEntries)
 }
 
 export default RemoveEmptyEntries
