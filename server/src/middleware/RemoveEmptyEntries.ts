@@ -4,6 +4,13 @@ import WriteToJSON from './WriteToJSON'
 
 config()
 
+const containsAlphanumerics = (str: string | undefined) => {
+  if (str !== undefined) {
+    return /[a-zA-Z0-9]/.test(str)
+  }
+  return
+}
+
 const RemoveEmptyEntries = async () => {
   const notion = new Client({ auth: process.env.NOTION_TOKEN })
   const databaseId: string = process.env.NOTION_DATABASE_ID as string
@@ -20,9 +27,7 @@ const RemoveEmptyEntries = async () => {
       if (property[1].id === 'title' || property[1].type === 'title') {
         if (
           property[1].title.length === 0 ||
-          property[1].title[0].plain_text === ' ' ||
-          property[1].title[0].plain_text === '  ' ||
-          property[1].title[0].plain_text === '   '
+          !containsAlphanumerics(property[1].title[0].plain_text)
         ) {
           console.log(property)
           emptyEntries.push(element)
