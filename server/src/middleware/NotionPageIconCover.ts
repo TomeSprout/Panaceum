@@ -3,6 +3,14 @@ import { config } from 'dotenv'
 
 config()
 
+const checkPageMissingIcon = (icon: any) => {
+  return !icon
+}
+
+const checkPageMissingCover = () => {
+
+}
+
 const NotionPageIconCover = async () => {
   const notion = new Client({ auth: process.env.NOTION_TOKEN })
   const databaseId: string = process.env.NOTION_DATABASE_ID as string
