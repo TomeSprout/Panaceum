@@ -6,4 +6,6 @@
 
 #### Notion
 
-- Organize Multi-Select Options
+- Organize/Sort Multi-Select Options
+- Remove Empty Database Entries
+- Check and Add Missing Database Page Icons & Covers
