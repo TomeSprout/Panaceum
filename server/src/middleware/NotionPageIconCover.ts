@@ -18,6 +18,19 @@ const NotionPageIconCover = async () => {
   const { results }: { results: any } = await notion.databases.query({
     database_id: databaseId,
   })
+
+  const missingIcons: any[] = []
+
+  const iconObject: any = {
+    type: 'external',
+    external: { url: 'https://www.notion.so/icons/bell-off_lightgray.svg' }
+  }
+
+  results.forEach((element: any) => {
+    if (checkPageMissingIcon(element.icon)) {
+      missingIcons.push(element.id)
+    }
+  })
 }
 
 export default NotionPageIconCover
