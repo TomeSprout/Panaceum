@@ -38,7 +38,7 @@ const NotionPageIconCover = async () => {
   results.forEach((element: any) => {
     if (checkPageMissingIcon(element.icon)) {
       missingIcons.push(element.id)
-      updatePageIcon(element.id, iconObjectTwo)
+      updatePageIcon(element.id, iconObject)
     }
   })
 }
