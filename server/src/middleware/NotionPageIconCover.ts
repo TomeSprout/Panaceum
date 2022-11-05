@@ -7,8 +7,8 @@ const checkPageMissingIcon = (icon: any) => {
   return !icon
 }
 
-const checkPageMissingCover = () => {
-
+const checkPageMissingCover = (cover: any) => {
+  return !cover
 }
 
 const updatePageIcon = async (pageId: string, newIcon: any) => {
