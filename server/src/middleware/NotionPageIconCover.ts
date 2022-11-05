@@ -11,6 +11,15 @@ const checkPageMissingCover = () => {
 
 }
 
+const updatePageIcon = async (pageId: string, newIcon: any) => {
+  const notion = new Client({ auth: process.env.NOTION_TOKEN })
+
+  await notion.pages.update({
+    page_id: pageId,
+    icon: newIcon,
+  })
+}
+
 const NotionPageIconCover = async () => {
   const notion = new Client({ auth: process.env.NOTION_TOKEN })
   const databaseId: string = process.env.NOTION_DATABASE_ID as string
@@ -29,6 +38,7 @@ const NotionPageIconCover = async () => {
   results.forEach((element: any) => {
     if (checkPageMissingIcon(element.icon)) {
       missingIcons.push(element.id)
+      updatePageIcon(element.id, iconObjectTwo)
     }
   })
 }
