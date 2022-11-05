@@ -30,15 +30,20 @@ const NotionPageIconCover = async () => {
 
   const missingIcons: any[] = []
 
-  const iconObject: any = {
+  const iconObjectExternalNotionIcon = {
     type: 'external',
     external: { url: 'https://www.notion.so/icons/bell-off_lightgray.svg' }
+  }
+
+  const iconObjectEmoji = {
+    type: 'emoji',
+    emoji: '🤪'
   }
 
   results.forEach((element: any) => {
     if (checkPageMissingIcon(element.icon)) {
       missingIcons.push(element.id)
-      updatePageIcon(element.id, iconObject)
+      updatePageIcon(element.id, iconObjectExternalNotionIcon)
     }
   })
 }
