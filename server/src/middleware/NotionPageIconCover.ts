@@ -32,12 +32,12 @@ const NotionPageIconCover = async () => {
 
   const iconObjectExternalNotionIcon = {
     type: 'external',
-    external: { url: 'https://www.notion.so/icons/bell-off_lightgray.svg' }
+    external: { url: 'https://www.notion.so/icons/bell-off_lightgray.svg' },
   }
 
   const iconObjectEmoji = {
     type: 'emoji',
-    emoji: '🤪'
+    emoji: '🤪',
   }
 
   results.forEach((element: any) => {
