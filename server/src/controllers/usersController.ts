@@ -2,14 +2,6 @@ import type { Request, Response } from 'express'
 import bcrypt from 'bcrypt'
 import User from '../models/User'
 
-interface notionKey {
-  key: string
-}
-
-interface todoistKey {
-  key: string
-}
-
 // @desc Create new Client Key
 // @route POST /key
 // @access Private
