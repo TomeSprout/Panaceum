@@ -47,7 +47,7 @@ export const createNewUser = async (req: Request, res: Response): Promise<void> 
     const user = await User.create(userObject)
 
     if (user) {
-      res.status(201).json({ message: `New user ${username} created` })
+      res.status(201).json({ message: `Created new user - ${username}` })
     } else {
       res.status(400).json({ message: 'Invalid user data received' })
     }
