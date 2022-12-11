@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv'
 import * as express from 'express'
 import * as cors from 'cors'
 import * as path from 'path'
-import { connection as MongoDBConnection } from 'mongoose'
+import * as mongoose from 'mongoose'
 import { databaseConnection } from './configuration/databaseConnection.config'
 import { corsOptions } from './configuration/corsOptions'
 
@@ -16,6 +16,7 @@ const app = express.default()
 const PORT: string | number = (process.env.PORT as string) || 3500
 
 databaseConnection()
+mongoose.set('strictQuery', true)
 
 app.use(cors.default(corsOptions))
 app.use(express.json())
@@ -34,7 +35,7 @@ app.use('*', (req, res) => {
   }
 })
 
-MongoDBConnection.once('open', (): void => {
+mongoose.connection.once('open', (): void => {
   console.log('Connected to MongoDB')
   app.listen(PORT, () => console.log(`⚡️ Server running on Port: ${PORT}`))
 })
