@@ -20,6 +20,7 @@ const PORT: string | number = (process.env.PORT as string) || 3500
 databaseConnection()
 
 app.use(cors.default(corsOptions))
+app.use(express.json())
 
 const main = async () => {
   // await OrganizeMultiSelects()
