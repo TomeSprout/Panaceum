@@ -1,21 +1,12 @@
-import { Request, Response } from 'express'
+import { Router } from 'express'
+import {
+  createNewUser,
+} from '../controllers/usersController'
 
-interface notionKey {
-  key: string
-}
+const router: Router = Router()
 
-interface todoistKey {
-  key: string
-}
+router
+  .route('/')
+  .post(createNewUser)
 
-// @desc Create new Client Key
-// @route POST /key
-// @access Private
-export const createKey = async (req: Request, res: Response): Promise<void> => {
-  const key: notionKey | todoistKey = req.body
-
-  if (typeof key !== 'string') {
-    res.status(400).json({ message: `Invalid key` })
-    return
-  }
-}
+module.exports = router
