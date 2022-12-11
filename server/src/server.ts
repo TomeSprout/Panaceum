@@ -22,6 +22,7 @@ app.use(cors.default(corsOptions))
 app.use(express.json())
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use('/', require('./routes/root'))
+app.use('/testAPI', require('./routes/testAPI'))
 app.use('/users', require('./routes/userRoutes'))
 app.use('*', (req, res) => {
   res.status(404)
