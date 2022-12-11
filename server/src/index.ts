@@ -36,6 +36,11 @@ app.use('*', (req, res) => {
   }
 })
 
+MongoDBConnection.once('open', (): void => {
+  console.log('Connected to MongoDB')
+  app.listen(PORT, () => console.log(`⚡️ Server running on Port: ${PORT}`))
+})
+
 const main = async () => {
   // await OrganizeMultiSelects()
   // await RemoveEmptyEntries()
