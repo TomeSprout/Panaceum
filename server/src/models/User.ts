@@ -29,7 +29,7 @@ const userSchema = new Schema<UserSchema>({
       description: String,
       label: String,
       secret: String,
-    }
+    },
   ],
   shelf: [
     {
@@ -37,10 +37,10 @@ const userSchema = new Schema<UserSchema>({
       label: String,
       bottle: [
         {
-          content: String
-        }
-      ]
-    }
+          content: String,
+        },
+      ],
+    },
   ],
   guest: {
     type: Boolean,
@@ -53,7 +53,7 @@ const userSchema = new Schema<UserSchema>({
   blacklist: {
     type: Boolean,
     default: false,
-  }
+  },
 })
 
 const User = model<UserSchema>('User', userSchema)
