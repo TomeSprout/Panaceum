@@ -1,6 +1,6 @@
 import { connect as MongoDBConnection } from 'mongoose'
 
-const connectDB = async () => {
+const databaseConnection = async () => {
   try {
     await MongoDBConnection(process.env.DATABASE_URI as string)
   } catch (error) {
@@ -8,4 +8,4 @@ const connectDB = async () => {
   }
 }
 
-export { connectDB }
+export { databaseConnection }
