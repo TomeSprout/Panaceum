@@ -6,6 +6,7 @@ import * as path from 'path'
 import { connection as MongoDBConnection } from 'mongoose'
 
 import { databaseConnection } from './configuration/databaseConnection'
+import { corsOptions } from './configuration/corsOptions'
 
 import OrganizeMultiSelects from './middleware/OrganizeMultiSelects'
 import RemoveEmptyEntries from './middleware/RemoveEmptyEntries'
@@ -17,6 +18,8 @@ const app = express.default()
 const PORT: string | number = (process.env.PORT as string) || 3500
 
 databaseConnection()
+
+app.use(cors.default(corsOptions))
 
 const main = async () => {
   // await OrganizeMultiSelects()
