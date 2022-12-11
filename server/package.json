@@ -6,6 +6,9 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf ./dist",
+    "watch": "tsc --watch",
+    "dev": "concurrently \"npm rum watch\" \"nodemon dist/server\"",
     "start": "ts-node src/index.ts",
     "typecheck": "tsc --noEmit",
     "build": "tsc",
