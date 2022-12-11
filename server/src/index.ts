@@ -2,9 +2,7 @@ import * as dotenv from 'dotenv'
 import * as express from 'express'
 import * as cors from 'cors'
 import * as path from 'path'
-
 import { connection as MongoDBConnection } from 'mongoose'
-
 import { databaseConnection } from './configuration/databaseConnection.config'
 import { corsOptions } from './configuration/corsOptions'
 
@@ -44,7 +42,7 @@ MongoDBConnection.once('open', (): void => {
 const main = async () => {
   // await OrganizeMultiSelects()
   // await RemoveEmptyEntries()
-  await NotionPageIconCover()
+  // await NotionPageIconCover()
 }
 
 main()
