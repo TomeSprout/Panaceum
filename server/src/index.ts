@@ -5,7 +5,7 @@ import * as path from 'path'
 
 import { connection as MongoDBConnection } from 'mongoose'
 
-import { databaseConnection } from './configuration/databaseConnection'
+import { databaseConnection } from './configuration/databaseConnection.config'
 import { corsOptions } from './configuration/corsOptions'
 
 import OrganizeMultiSelects from './middleware/OrganizeMultiSelects'
