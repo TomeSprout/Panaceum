@@ -7,8 +7,8 @@ const App = () => {
   return (
     <MantineProvider theme={theme} withGlobalStyles withNormalizeCSS>
       <Stack align="center" mt={50}>
-        <APISetup title={"Potion"} description={""} />
-        <FeaturesGrid title={"Potion"} description={""} data={MOCKDATA}/>
+        <APISetup title={"Panaceum"} description={""} />
+        <FeaturesGrid title={"Panaceum"} description={""} data={MOCKDATA}/>
       </Stack>
     </MantineProvider>
   );
