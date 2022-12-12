@@ -1,4 +1,4 @@
-# Potion
+# Panaceum
 
 ## Add integration between Notion and Todoist for advanced functionality and interoperability
 
