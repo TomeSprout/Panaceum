@@ -3,6 +3,7 @@ import * as express from 'express'
 import * as cors from 'cors'
 import * as path from 'path'
 import * as mongoose from 'mongoose'
+import { connection as MongoDBConnection } from 'mongoose'
 import { databaseConnection } from './configuration/databaseConnection.config'
 import { corsOptions } from './configuration/corsOptions'
 
@@ -36,7 +37,7 @@ app.use('*', (req, res) => {
   }
 })
 
-mongoose.connection.once('open', (): void => {
+MongoDBConnection.once('open', (): void => {
   console.log('Connected to MongoDB')
   app.listen(PORT, () => console.log(`⚡️ Server running on Port: ${PORT}`))
 })
