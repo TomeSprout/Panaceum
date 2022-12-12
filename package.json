@@ -1,5 +1,5 @@
 {
-  "name": "potion",
+  "name": "panaceum",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,13 +9,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TomeSprout/potion.git"
+    "url": "git+https://github.com/TomeSprout/panaceum.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/TomeSprout/potion/issues"
+    "url": "https://github.com/TomeSprout/panaceum/issues"
   },
-  "homepage": "https://github.com/TomeSprout/potion#readme"
+  "homepage": "https://github.com/TomeSprout/panaceum#readme"
 }
