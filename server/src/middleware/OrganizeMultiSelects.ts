@@ -1,7 +1,7 @@
 import { Client } from '@notionhq/client'
 import { config } from 'dotenv'
 import GetMultiSelectOptions from './GetMultiSelectOptions'
-import WriteToJSON from './WriteToJSON'
+import WriteToJSON from '../util/WriteToJSON'
 
 config()
 
