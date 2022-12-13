@@ -1,32 +1,8 @@
 import { Client } from '@notionhq/client'
 import { config } from 'dotenv'
 import GetMultiSelectOptions from './GetMultiSelectOptions'
-import WriteToJSON from '../util/WriteToJSON'
 
 config()
-
-// ! Logic currently incorrect. DO NOT USE
-const checkOutOfOrder = (operand: any, testOperand: any): boolean => {
-  let outOfOrder = false
-
-  operand.forEach((element: any) => {
-    const pageMultiSelect = element.properties.Genre.multi_select
-    pageMultiSelect.forEach(
-      (multiSelectOption: any, multiSelectOptionIndex: any) => {
-        testOperand.forEach((optionElement: any, optionIndex: any) => {
-          if ((multiSelectOption.id = optionElement.id)) {
-            if (multiSelectOptionIndex > optionIndex) {
-              outOfOrder = true
-              multiSelectOption.outOfOrder = true
-            }
-          }
-        })
-      }
-    )
-  })
-
-  return outOfOrder
-}
 
 const sortMultiSelectOptions = (multiSelectOptions: [], options: any) => {
   const newMultiSelectOptions: any[] = []
@@ -96,7 +72,6 @@ const OrganizeMultiSelects = async () => {
       multiSelectPropertyName,
       updatedOptions
     )
-    WriteToJSON(newResponse)
   })
 }
 
