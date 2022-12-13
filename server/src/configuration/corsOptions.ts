@@ -16,14 +16,3 @@ const corsOptions: CorsOptions = {
 }
 
 export { corsOptions }
-
-/*
-  ! See line 8 --> if statement checking origin inside of allowedOrigins
-  * origin can be a string or undefined according to the interface: CorsOptions, but throws a type mismatch error
-  ? Fix: set the parameter as origin! 
-
-
-  https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#non-null-assertion-operator
-
-  https://stackoverflow.com/questions/54496398/typescript-type-string-undefined-is-not-assignable-to-type-string
-*/

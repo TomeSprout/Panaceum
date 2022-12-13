@@ -7,10 +7,6 @@ import { connection as MongoDBConnection } from 'mongoose'
 import { databaseConnection } from './configuration/databaseConnection.config'
 import { corsOptions } from './configuration/corsOptions'
 
-import OrganizeMultiSelects from './middleware/OrganizeMultiSelects'
-import RemoveEmptyEntries from './middleware/RemoveEmptyEntries'
-import NotionPageIconCover from './middleware/NotionPageIconCover'
-
 dotenv.config()
 
 const app = express.default()
@@ -23,7 +19,6 @@ app.use(cors.default(corsOptions))
 app.use(express.json())
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use('/', require('./routes/root'))
-app.use('/testAPI', require('./routes/testAPI'))
 app.use('/users', require('./routes/userRoutes'))
 app.use('*', (req, res) => {
   res.status(404)
@@ -41,11 +36,3 @@ MongoDBConnection.once('open', (): void => {
   console.log('Connected to MongoDB')
   app.listen(PORT, () => console.log(`⚡️ Server running on Port: ${PORT}`))
 })
-
-const main = async () => {
-  // await OrganizeMultiSelects()
-  // await RemoveEmptyEntries()
-  // await NotionPageIconCover()
-}
-
-main()
