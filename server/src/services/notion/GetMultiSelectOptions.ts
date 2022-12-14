@@ -1,45 +1,25 @@
 import { getNotionDBProperties } from './getNotionDB'
 
-
 const GetMultiSelectOptions = async () => {
   const properties = await getNotionDBProperties()
-  // Need to return user selected Multi-Select Property from client 
-  const multiSelectPropertyName: string = 'Genre' // placeholder
+  
+  // Need to return user selected Multi-Select Property from client
+  const multiSelectName: string = 'Tags' // placeholder
 
-  type StringRequest = string
-  type SelectColor =
-    | 'default'
-    | 'gray'
-    | 'brown'
-    | 'orange'
-    | 'yellow'
-    | 'green'
-    | 'blue'
-    | 'purple'
-    | 'pink'
-    | 'red'
-  type SelectPropertyResponse = {
-    id: StringRequest
-    name: StringRequest
-    color?: SelectColor
-    order?: number
+  interface SelectPropertyResponse {
+    id: string
+    name: string
+    color?: string
   }
 
-  interface MultiSelectDatabasePropertyOptions {
-    options: Array<SelectPropertyResponse>
-    forEach(
-      callback: (propertyOptionObject: SelectPropertyResponse) => void
-    ): void
+  if ('multi_select' in properties[multiSelectName]) {
+    const options: SelectPropertyResponse[] = properties[multiSelectName].multi_select.options
+    for (const element of options) {
+      delete element.color
+    }
+    return options
   }
-
-  const options: MultiSelectDatabasePropertyOptions =
-    properties[multiSelectPropertyName].multi_select.options
-
-  options.forEach((element) => {
-    delete element.color
-  })
-
-  return options
+  return
 }
 
 export default GetMultiSelectOptions
