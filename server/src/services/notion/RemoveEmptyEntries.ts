@@ -1,4 +1,4 @@
-import getNotionDB from './getNotionDB'
+import { getNotionDB } from './getNotionDB'
 import updateNotionPages from './updateNotionPages'
 
 const isNotEmpty = (str: string | undefined) => {
@@ -20,7 +20,7 @@ const isNotEmpty = (str: string | undefined) => {
 }
 
 const RemoveEmptyEntries = async () => {
-  const results = await getNotionDB('query')
+  const results = await getNotionDB()
 
   const emptyEntries: any[] = []
 
@@ -33,8 +33,7 @@ const RemoveEmptyEntries = async () => {
           !isNotEmpty(property[1].title[0].plain_text)
           ) {
             emptyEntries.push(element)
-            
-            updateNotionPages('delete', element.id)
+            updateNotionPages({ page_id: element.id, archived: true})
           }
         }
       })
