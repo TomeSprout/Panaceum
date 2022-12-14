@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const notionGetDb = async (
+const getNotionDB = async (
   getMethod: string = 'retrieve',
   filter?: any
 ): Promise<any> => {
@@ -27,4 +27,4 @@ const notionGetDb = async (
   }
 }
 
-export default notionGetDb
+export default getNotionDB
