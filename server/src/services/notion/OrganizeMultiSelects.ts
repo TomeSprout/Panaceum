@@ -1,5 +1,5 @@
-import { Client } from '@notionhq/client'
 import { config } from 'dotenv'
+import updateNotionPages from './updateNotionPages'
 import GetMultiSelectOptions from './GetMultiSelectOptions'
 
 config()
@@ -28,23 +28,23 @@ const updateMultiSelectOptions = async (
   propertyName: string,
   updatedOptionArray: any[]
 ) => {
-  const notion = new Client({ auth: process.env.NOTION_TOKEN })
 
-  const response = await notion.pages.update({
-    page_id: currentPageId,
-    properties: {
-      [propertyName]: {
-        type: 'multi_select',
-        multi_select: updatedOptionArray,
-      },
-    },
-  })
+  const response = await updateNotionPages(
+    {
+      page_id: currentPageId,
+      properties: {
+        [propertyName]: {
+          type: 'multi_select',
+          multi_select: updatedOptionArray,
+        },
+      }
+    }
+  )
 
   return response
 }
 
 const OrganizeMultiSelects = async () => {
-  const notion = new Client({ auth: process.env.NOTION_TOKEN })
   const databaseId: string = process.env.NOTION_DATABASE_ID as string
   const multiSelectPropertyName: string = 'Genre'
 
