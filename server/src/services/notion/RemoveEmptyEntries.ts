@@ -20,11 +20,11 @@ const isNotEmpty = (str: string | undefined) => {
 }
 
 const RemoveEmptyEntries = async () => {
-  const results = getNotionDB('query')
+  const results = await getNotionDB('query')
 
   const emptyEntries: any[] = []
 
-  for (const element of await results) {
+  for (const element of results) {
     const properties = Object.entries(element.properties)
     properties.forEach(async (property: any) => {
       if (property[1].id === 'title' || property[1].type === 'title') {
