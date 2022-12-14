@@ -1,7 +1,8 @@
-import getNotionDB from './getNotionDB'
+import { getNotionDBProperties } from './getNotionDB'
+
 
 const GetMultiSelectOptions = async () => {
-  const properties = await getNotionDB('retrieve')
+  const properties = await getNotionDBProperties()
   // Need to return user selected Multi-Select Property from client 
   const multiSelectPropertyName: string = 'Genre' // placeholder
 
