@@ -1,16 +1,16 @@
 import { getNotionDBProperties } from './getNotionDB'
 
-const GetMultiSelectOptions = async () => {
+interface SelectPropertyResponse {
+  id: string
+  name: string
+  color?: string
+}
+
+const GetMultiSelectOptions = async (): Promise<SelectPropertyResponse[] | undefined> => {
   const properties = await getNotionDBProperties()
   
   // Need to return user selected Multi-Select Property from client
   const multiSelectName: string = 'Tags' // placeholder
-
-  interface SelectPropertyResponse {
-    id: string
-    name: string
-    color?: string
-  }
 
   if ('multi_select' in properties[multiSelectName]) {
     const options: SelectPropertyResponse[] = properties[multiSelectName].multi_select.options
@@ -19,7 +19,7 @@ const GetMultiSelectOptions = async () => {
     }
     return options
   }
-  return
+  return undefined
 }
 
 export default GetMultiSelectOptions
