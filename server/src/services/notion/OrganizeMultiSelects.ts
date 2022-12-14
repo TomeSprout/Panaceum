@@ -5,12 +5,18 @@ import GetMultiSelectOptions from './GetMultiSelectOptions'
 import { config } from 'dotenv'
 config()
 
-const sortMultiSelectOptions = (multiSelectOptions: any[], options: any) => {
-  const newMultiSelectOptions: any[] = []
+interface SelectPropertyResponse {
+  id: string
+  name: string
+  color?: string
+}
+
+const sortMultiSelectOptions = (multiSelectOptions: SelectPropertyResponse[], options: any) => {
+  const newMultiSelectOptions: SelectPropertyResponse[] = []
 
   multiSelectOptions.forEach((element: any) => {
     for (let index = 0, len = options.length; index < len; index++) {
-      multiSelectOptions.forEach((multiSelectOption: any) => {
+      multiSelectOptions.forEach((multiSelectOption: SelectPropertyResponse) => {
         if (
           multiSelectOption.id === options[index].id &&
           !newMultiSelectOptions.includes(multiSelectOption)
