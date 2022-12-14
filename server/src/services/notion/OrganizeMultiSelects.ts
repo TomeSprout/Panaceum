@@ -11,23 +11,23 @@ interface SelectPropertyResponse {
   color?: string
 }
 
-const sortMultiSelectOptions = (multiSelectOptions: SelectPropertyResponse[], options: any) => {
-  const newMultiSelectOptions: SelectPropertyResponse[] = []
+const sortMultiSelectSelections = (multiSelectSelections: SelectPropertyResponse[], options: SelectPropertyResponse[]) => {
+  const sortedOptions: SelectPropertyResponse[] = []
 
-  multiSelectOptions.forEach((element: any) => {
+  for (const element of multiSelectSelections) {
     for (let index = 0, len = options.length; index < len; index++) {
-      multiSelectOptions.forEach((multiSelectOption: SelectPropertyResponse) => {
+      multiSelectSelections.forEach((selection: SelectPropertyResponse) => {
         if (
-          multiSelectOption.id === options[index].id &&
-          !newMultiSelectOptions.includes(multiSelectOption)
+          selection.id === options[index].id &&
+          !sortedOptions.includes(selection)
         ) {
-          newMultiSelectOptions.push(multiSelectOption)
+          sortedOptions.push(selection)
         }
       })
     }
-  })
+  }
 
-  return newMultiSelectOptions
+  return sortedOptions
 }
 
 const updateMultiSelectOptions = async (
@@ -51,7 +51,7 @@ const updateMultiSelectOptions = async (
   return response
 }
 
-const OrganizeMultiSelects = async () => {
+const OrganizeMultiSelects = async (): Promise<void> => {
   const databaseId: string = process.env.NOTION_DATABASE_ID as string
   const multiSelectName: string = 'Genre'
 
@@ -82,16 +82,19 @@ const OrganizeMultiSelects = async () => {
   for (const element of results) {
     if ('properties' in element) {
       if ('multi_select' in element.properties[multiSelectName]) {
-        const multiSelectOptions = element.properties[multiSelectName].multi_select
-        const updatedOptions = sortMultiSelectOptions(
-          multiSelectOptions,
-          optionsComparator
-        )
-        await updateMultiSelectOptions(
-          element.id,
-          multiSelectName,
-          updatedOptions
-        )
+        const multiSelectSelection = element.properties[multiSelectName].multi_select
+        
+        if (optionsComparator !== undefined) {
+          const updatedOptions = sortMultiSelectSelections(
+            multiSelectSelection,
+            optionsComparator
+            )
+          await updateMultiSelectOptions(
+            element.id,
+            multiSelectName,
+            updatedOptions
+          )
+        }
       }
     }
 
