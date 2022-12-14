@@ -1,7 +1,7 @@
 import { Client } from '@notionhq/client'
-import dotenv from 'dotenv'
+import { config } from 'dotenv'
 
-dotenv.config()
+config()
 
 const getNotionDB = async (
   getMethod: string = 'retrieve',
