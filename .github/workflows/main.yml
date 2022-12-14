@@ -23,5 +23,5 @@ jobs:
       - name: Prettify Code Action
         uses: creyD/prettier_action@v4.2
         with:
-          prettier_options: npx prettier --config ./.prettierrc --ignore-path ./.prettierignore --write "**/src/**/*.{js,jsx,ts,tsx,css,scss}"
+          prettier_options: --config ./.prettierrc --ignore-path ./.prettierignore --write "**/src/**/*.{js,jsx,ts,tsx,css,scss}"
           commit_message: "Prettier Format GitHub Action"
