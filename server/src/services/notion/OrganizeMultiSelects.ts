@@ -1,6 +1,5 @@
-import { getNotionDBPages } from './getNotionDB'
+import { getNotionDBPages, getNotionDBProperties } from './getNotionDB'
 import updateNotionPages from './updateNotionPages'
-import GetMultiSelectOptions from './GetMultiSelectOptions'
 
 import { config } from 'dotenv'
 config()
@@ -9,6 +8,22 @@ interface SelectPropertyResponse {
   id: string
   name: string
   color?: string
+}
+
+// Need to return user selected Multi-Select Property from client
+const multiSelectName: string = 'Tags' // placeholder
+
+const GetMultiSelectOptions = async (): Promise<SelectPropertyResponse[] | undefined> => {
+  const properties = await getNotionDBProperties()  
+
+  if ('multi_select' in properties[multiSelectName]) {
+    const options: SelectPropertyResponse[] = properties[multiSelectName].multi_select.options
+    for (const element of options) {
+      delete element.color
+    }
+    return options
+  }
+  return undefined
 }
 
 const sortMultiSelectSelections = (multiSelectSelections: SelectPropertyResponse[], options: SelectPropertyResponse[]) => {
@@ -53,7 +68,6 @@ const updateMultiSelectOptions = async (
 
 const OrganizeMultiSelects = async (): Promise<void> => {
   const databaseId: string = process.env.NOTION_DATABASE_ID as string
-  const multiSelectName: string = 'Genre'
 
   interface MultiSelectPropertyFilter {
       multi_select: {
