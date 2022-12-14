@@ -1,19 +1,18 @@
 import { Client } from '@notionhq/client'
-import dotenv from 'dotenv'
+import { UpdatePageParameters } from '@notionhq/client/build/src/api-endpoints'
 
+import dotenv from 'dotenv'
 dotenv.config()
 
-type UpdateMethod = 'delete' | 'sort'
+const notion = new Client({ auth: process.env.NOTION_TOKEN })
 
-const updateNotionPages = (updateMethod: UpdateMethod ,pageId: string) => {
-  const notion = new Client({ auth: process.env.NOTION_TOKEN })
-  
-  if (updateMethod = 'delete') {
-    notion.pages.update({
-      page_id: pageId,
-      archived: true,
-    })
-  }
+const updateNotionPages = (params: UpdatePageParameters): void => {
+  notion.pages.update({
+    page_id: params.page_id,
+    icon: params.icon,
+    cover: params.cover,
+    archived: params.archived,
+  })
 }
 
 export default updateNotionPages
