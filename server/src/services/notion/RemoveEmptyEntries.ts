@@ -1,7 +1,5 @@
-import { Client } from '@notionhq/client'
-import { config } from 'dotenv'
-
-config()
+import { getNotionDBPages } from './getNotionDB'
+import updateNotionPages from './updateNotionPages'
 
 const isNotEmpty = (str: string | undefined) => {
   const checkLatinAlphabetCharacters = /[a-zA-Z]/
@@ -22,12 +20,7 @@ const isNotEmpty = (str: string | undefined) => {
 }
 
 const RemoveEmptyEntries = async () => {
-  const notion = new Client({ auth: process.env.NOTION_TOKEN })
-  const databaseId: string = process.env.NOTION_DATABASE_ID as string
-
-  const { results }: { results: any } = await notion.databases.query({
-    database_id: databaseId,
-  })
+  const results = await getNotionDBPages()
 
   const emptyEntries: any[] = []
 
@@ -38,17 +31,13 @@ const RemoveEmptyEntries = async () => {
         if (
           property[1].title.length === 0 ||
           !isNotEmpty(property[1].title[0].plain_text)
-        ) {
-          emptyEntries.push(element)
-
-          await notion.pages.update({
-            page_id: element.id,
-            archived: true,
-          })
+          ) {
+            emptyEntries.push(element)
+            updateNotionPages({ page_id: element.id, archived: true})
+          }
         }
-      }
+      })
     })
-  })
-}
+  }
 
 export default RemoveEmptyEntries
