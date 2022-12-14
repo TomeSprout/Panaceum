@@ -1,10 +1,11 @@
-import { config } from 'dotenv'
+import { getNotionDBPages } from './getNotionDB'
 import updateNotionPages from './updateNotionPages'
 import GetMultiSelectOptions from './GetMultiSelectOptions'
 
+import { config } from 'dotenv'
 config()
 
-const sortMultiSelectOptions = (multiSelectOptions: [], options: any) => {
+const sortMultiSelectOptions = (multiSelectOptions: any[], options: any) => {
   const newMultiSelectOptions: any[] = []
 
   multiSelectOptions.forEach((element: any) => {
@@ -46,33 +47,49 @@ const updateMultiSelectOptions = async (
 
 const OrganizeMultiSelects = async () => {
   const databaseId: string = process.env.NOTION_DATABASE_ID as string
-  const multiSelectPropertyName: string = 'Genre'
+  const multiSelectName: string = 'Genre'
 
-  const { results }: { results: any } = await notion.databases.query({
-    database_id: databaseId,
-    filter: {
-      property: multiSelectPropertyName,
+  interface MultiSelectPropertyFilter {
       multi_select: {
-        is_not_empty: true,
-      },
+        contains: string
+      } | {
+        does_not_contain: string
+      } | {
+        is_empty: true
+      } | {
+        is_not_empty: true
+      }
+      property: string
+      type?: "multi_select"
+  }
+
+  let queryFilter: MultiSelectPropertyFilter = {
+    property: multiSelectName,
+    multi_select: {
+      is_not_empty: true,
     },
-  })
+  }
 
-  const optionsComparator: any = await GetMultiSelectOptions()
+  const results = await getNotionDBPages({ database_id: databaseId, filter: queryFilter})
+  const optionsComparator = await GetMultiSelectOptions()
+  
+  for (const element of results) {
+    if ('properties' in element) {
+      if ('multi_select' in element.properties[multiSelectName]) {
+        const multiSelectOptions = element.properties[multiSelectName].multi_select
+        const updatedOptions = sortMultiSelectOptions(
+          multiSelectOptions,
+          optionsComparator
+        )
+        await updateMultiSelectOptions(
+          element.id,
+          multiSelectName,
+          updatedOptions
+        )
+      }
+    }
 
-  results.forEach(async (element: any) => {
-    const multiSelectOptions =
-      element.properties[multiSelectPropertyName].multi_select
-    const updatedOptions = sortMultiSelectOptions(
-      multiSelectOptions,
-      optionsComparator
-    )
-    let newResponse = await updateMultiSelectOptions(
-      element.id,
-      multiSelectPropertyName,
-      updatedOptions
-    )
-  })
+  }
 }
 
 export default OrganizeMultiSelects
