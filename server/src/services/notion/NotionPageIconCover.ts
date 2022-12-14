@@ -1,4 +1,4 @@
-import { getNotionDB } from './getNotionDB'
+import { getNotionDBPages } from './getNotionDB'
 import updateNotionPages from './updateNotionPages'
 
 const checkPageMissingIcon = (icon: any) => {
@@ -14,7 +14,7 @@ const updatePageIcon = async (pageId: string, newIcon: any) => {
 }
 
 const NotionPageIconCover = async () => {
-  const results = await getNotionDB()
+  const results = await getNotionDBPages()
 
   const missingIcons: any[] = []
 
