@@ -3,8 +3,10 @@ import { config } from 'dotenv'
 
 config()
 
+type GetMethod = 'retrieve' | 'query'
+
 const getNotionDB = async (
-  getMethod: string = 'retrieve',
+  getMethod: GetMethod,
   filter?: any
 ): Promise<any> => {
   const notion = new Client({ auth: process.env.NOTION_TOKEN })
