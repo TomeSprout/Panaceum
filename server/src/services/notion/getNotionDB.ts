@@ -11,15 +11,15 @@ const getNotionDB = async (
   const databaseId: string = process.env.NOTION_DATABASE_ID as string
 
   if (getMethod === 'retrieve') {
-    const results = await notion.databases.retrieve({
+    const { properties } = await notion.databases.retrieve({
       database_id: databaseId,
     })
 
-    return results
+    return properties
   }
 
   if (getMethod === 'query') {
-    const results = await notion.databases.query({
+    const { results } = await notion.databases.query({
       database_id: databaseId,
     })
 
