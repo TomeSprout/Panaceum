@@ -1,8 +1,7 @@
 import { Client } from '@notionhq/client'
 import {
   GetDatabaseResponse,
-  PartialDatabaseObjectResponse,
-  PartialPageObjectResponse,
+  GetPageResponse,
 } from '@notionhq/client/build/src/api-endpoints'
 
 import { config } from 'dotenv'
@@ -11,10 +10,10 @@ config()
 const notion = new Client({ auth: process.env.NOTION_TOKEN })
 const databaseId: string = process.env.NOTION_DATABASE_ID as string
 
-export const getNotionDB = async (
+export const getNotionDBPages = async (
   filter?: any
 ): Promise<
-  Array<PartialPageObjectResponse | PartialDatabaseObjectResponse>
+  Array<GetPageResponse>
 > => {
   const { results } = await notion.databases.query({
     database_id: databaseId,
