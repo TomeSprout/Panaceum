@@ -24,7 +24,7 @@ const RemoveEmptyEntries = async () => {
 
   const emptyEntries: any[] = []
 
-  for (const element of results) {
+  results.forEach((element: any) => {
     const properties = Object.entries(element.properties)
     properties.forEach(async (property: any) => {
       if (property[1].id === 'title' || property[1].type === 'title') {
@@ -38,7 +38,7 @@ const RemoveEmptyEntries = async () => {
           }
         }
       })
-    }
+    })
   }
 
 export default RemoveEmptyEntries
