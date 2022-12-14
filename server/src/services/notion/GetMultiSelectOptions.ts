@@ -1,16 +1,9 @@
-import { Client } from '@notionhq/client'
-import dotenv from 'dotenv'
-
-dotenv.config()
+import getNotionDB from './getNotionDB'
 
 const GetMultiSelectOptions = async () => {
-  const notion = new Client({ auth: process.env.NOTION_TOKEN })
-  const databaseId: string = process.env.NOTION_DATABASE_ID as string
-  const multiSelectPropertyName: string = 'Genre'
-
-  const { properties }: { properties: any } = await notion.databases.retrieve({
-    database_id: databaseId,
-  })
+  const properties = await getNotionDB('retrieve')
+  // Need to return user selected Multi-Select Property from client 
+  const multiSelectPropertyName: string = 'Genre' // placeholder
 
   type StringRequest = string
   type SelectColor =
