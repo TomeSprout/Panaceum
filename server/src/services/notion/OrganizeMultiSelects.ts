@@ -13,7 +13,7 @@ interface SelectPropertyResponse {
 // Need to return user selected Multi-Select Property from client
 const multiSelectName: string = 'Tags' // placeholder
 
-const GetMultiSelectOptions = async (): Promise<
+const getMultiSelectOptions = async (): Promise<
   SelectPropertyResponse[] | undefined
 > => {
   const properties = await getNotionDBProperties()
@@ -101,7 +101,7 @@ const OrganizeMultiSelects = async (): Promise<void> => {
     database_id: databaseId,
     filter: queryFilter,
   })
-  const optionsComparator = await GetMultiSelectOptions()
+  const optionsComparator = await getMultiSelectOptions()
 
   for (const element of results) {
     if ('properties' in element) {
