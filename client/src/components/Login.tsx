@@ -18,17 +18,28 @@ const AuthenticationTitle = () => {
         align="center"
         sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 900 })}
       >
-        Welcome back!
+        Make an Account
       </Title>
-      <Text color="dimmed" size="sm" align="center" mt={5}>
-        Do not have an account yet?{' '}
-        <Anchor<'a'> href="#" size="sm" onClick={(event) => event.preventDefault()}>
-          Create account
-        </Anchor>
-      </Text>
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-        <TextInput label="Email" placeholder="you@mantine.dev" required />
+        <TextInput label="Email" placeholder="user@email.com" required />
+        <PasswordInput label="Password" placeholder="Your password" required mt="md" />
+        <TextInput label="Username" placeholder="Username" required mt="md" />
+        <Button fullWidth mt="xl">
+          Sign Up
+        </Button>
+      </Paper>
+
+
+      <Title
+        align="center"
+        sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 900 })}
+      >
+        Welcome back!
+      </Title>
+      
+      <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+        <TextInput label="Email" placeholder="user@email.com" required />
         <PasswordInput label="Password" placeholder="Your password" required mt="md" />
         <Group position="apart" mt="lg">
           <Checkbox label="Remember me" sx={{ lineHeight: 1 }} />
@@ -37,7 +48,7 @@ const AuthenticationTitle = () => {
           </Anchor>
         </Group>
         <Button fullWidth mt="xl">
-          Sign in
+          Log in
         </Button>
       </Paper>
     </Container>
