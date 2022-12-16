@@ -1,18 +1,19 @@
+import { Routes, Route } from 'react-router-dom'
 import { MantineProvider, Button, Stack } from "@mantine/core";
+import Layout from './components/Layout';
 import { theme } from "./theme";
 import { FeaturesGrid, MOCKDATA } from "./components/FeatureExample";
 import AuthenticationTitle from "./components/Login";
 import APISetup from "./components/APISetup";
 
-const App = () => {
+const App = (): JSX.Element => {
+
   return (
-    <MantineProvider theme={theme} withGlobalStyles withNormalizeCSS>
-      <Stack align="center" mt={50}>
-        <AuthenticationTitle />
-        <APISetup title={"Panaceum"} description={""} />
-        <FeaturesGrid title={"Panaceum"} description={""} data={MOCKDATA}/>
-      </Stack>
-    </MantineProvider>
+    <Routes>
+      <Route path='/' element={<Layout />}>
+        {/* <Route index element={<FrontPage/>} /> */}
+      </Route>
+    </Routes>
   );
 }
 
