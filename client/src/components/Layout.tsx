@@ -15,21 +15,23 @@ const Layout = () => {
   }
 
   return (
-    <ColorSchemeProvider
-      colorScheme={colorScheme}
-      toggleColorScheme={toggleColorScheme}
-    >
-      <MantineProvider
-        theme={{ colorScheme }}
-        withGlobalStyles
-        withNormalizeCSS
+    <main className="App">
+      <ColorSchemeProvider
+        colorScheme={colorScheme}
+        toggleColorScheme={toggleColorScheme}
       >
-        <Container size="md" my={40}>
-          <ColorSchemeToggle />
-        </Container>
-        <Outlet />
-      </MantineProvider>
-    </ColorSchemeProvider>
+        <MantineProvider
+          theme={{ colorScheme }}
+          withGlobalStyles
+          withNormalizeCSS
+        >
+          <Container size="md" my={40}>
+            <ColorSchemeToggle />
+          </Container>
+          <Outlet />
+        </MantineProvider>
+      </ColorSchemeProvider>
+    </main>
   )
 }
 
