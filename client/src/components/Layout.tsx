@@ -9,6 +9,7 @@ import {
 } from '@mantine/core'
 import GitHubActionButton from './GitHubActionButton'
 import { ColorSchemeToggle } from './ColorSchemeToggle'
+import PanaceumLogo from './PanaceumLogo'
 
 const Layout = () => {
   const [colorScheme, setColorScheme] = useState<ColorScheme>('dark')
@@ -28,7 +29,8 @@ const Layout = () => {
           withNormalizeCSS
         >
           <Container size="md" my={40}>
-            <Group position="right" my="xl">
+            <Group position="left" spacing="xl" my="xl">
+              <PanaceumLogo />
               <GitHubActionButton />
               <ColorSchemeToggle />
             </Group>
