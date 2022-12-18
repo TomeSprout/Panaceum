@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
+import FrontPage from './components/FrontPage'
 import Login from './components/Login'
 import APISetup from './components/APISetup'
 import { FeaturesGrid, MOCKDATA } from './components/FeatureExample'
@@ -20,7 +21,8 @@ const App = (): JSX.Element => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Login />} />
+        <Route index element={<FrontPage />} />
+        <Route path='/auth' element={<Login />} />
         <Route
           path="apisetup"
           element={<APISetup title={'Panaceum'} description={''} />}
