@@ -4,8 +4,10 @@ import {
   ColorScheme,
   ColorSchemeProvider,
   Container,
+  Group,
   MantineProvider,
 } from '@mantine/core'
+import GitHubActionButton from './GitHubActionButton'
 import { ColorSchemeToggle } from './ColorSchemeToggle'
 
 const Layout = () => {
@@ -26,7 +28,10 @@ const Layout = () => {
           withNormalizeCSS
         >
           <Container size="md" my={40}>
-            <ColorSchemeToggle />
+            <Group position="right" my="xl">
+              <GitHubActionButton />
+              <ColorSchemeToggle />
+            </Group>
           </Container>
           <Outlet />
         </MantineProvider>
