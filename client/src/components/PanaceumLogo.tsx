@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ActionIcon, Tooltip } from '@mantine/core'
-import logo from '../../public/potion-placeholder-svgrepo-com.svg'
+import logo from '../assets/potion-placeholder-svgrepo-com.svg'
 
 const PanaceumLogo = () => {
   return (
