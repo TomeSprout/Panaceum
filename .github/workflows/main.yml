@@ -4,10 +4,10 @@
 name: Continuous Integration
 
 on: 
-  pull_request:
   push:
-    branches: 
-      - main
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   prettier:
@@ -15,13 +15,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
-          # Make sure the actual branch is checked out when running on pull requests
           ref: ${{ github.head_ref }}
 
       - name: Prettify Code Action
         uses: creyD/prettier_action@v4.2
         with:
-          prettier_options: --config ./.prettierrc --ignore-path ./.prettierignore --write \"**/src/**/*.{js,jsx,ts,tsx,css,scss}\"
+          prettier_options: --config ./.prettierrc --ignore-path ./.prettierignore --write **/src/**/*.{js,jsx,ts,tsx,css,scss}
           commit_message: "Prettier Format GitHub Action"

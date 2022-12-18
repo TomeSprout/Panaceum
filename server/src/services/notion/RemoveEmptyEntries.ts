@@ -31,13 +31,13 @@ const RemoveEmptyEntries = async () => {
         if (
           property[1].title.length === 0 ||
           !isNotEmpty(property[1].title[0].plain_text)
-          ) {
-            emptyEntries.push(element)
-            updateNotionPages({ page_id: element.id, archived: true})
-          }
+        ) {
+          emptyEntries.push(element)
+          updateNotionPages({ page_id: element.id, archived: true })
         }
-      })
+      }
     })
-  }
+  })
+}
 
 export default RemoveEmptyEntries

@@ -9,7 +9,7 @@ import {
   useMantineTheme,
   createStyles,
   Button,
-} from "@mantine/core";
+} from '@mantine/core'
 import {
   IconKey,
   IconLock,
@@ -17,28 +17,28 @@ import {
   IconArrowRightCircle,
   IconCopyOff,
   IconFilter,
-} from "@tabler/icons";
+} from '@tabler/icons'
 
 export const MOCKDATA = [
   {
     icon: IconKey,
-    title: "Notion API Key",
-    description: "Enter your Notion API Key here",
-    placeholder: "Notion Key",
+    title: 'Notion API Key',
+    description: 'Enter your Notion API Key here',
+    placeholder: 'Notion Key',
   },
   {
     icon: IconKey,
-    title: "Todoist API Key",
-    description: "Enter your Todoist API Key here",
-    placeholder: "Todoist Key",
+    title: 'Todoist API Key',
+    description: 'Enter your Todoist API Key here',
+    placeholder: 'Todoist Key',
   },
-];
+]
 
 interface APIProps {
-  icon: TablerIcon;
-  title: React.ReactNode;
-  description: React.ReactNode;
-  placeholder: string;
+  icon: TablerIcon
+  title: React.ReactNode
+  description: React.ReactNode
+  placeholder: string
 }
 
 function API({ icon: Icon, title, description, placeholder }: APIProps) {
@@ -46,24 +46,24 @@ function API({ icon: Icon, title, description, placeholder }: APIProps) {
     <div>
       <TextInput
         placeholder={placeholder}
-        radius={"md"}
-        size={"lg"}
+        radius={'md'}
+        size={'lg'}
         icon={<Icon size={25} stroke={2.5} />}
       />
-      <Text size="lg" color="dimmed" style={{ lineHeight: 3}}>
+      <Text size="lg" color="dimmed" style={{ lineHeight: 3 }}>
         {description}
       </Text>
       <br />
       <Button
         variant="gradient"
-        gradient={{ from: "indigo", to: "cyan", deg: 90 }}
+        gradient={{ from: 'indigo', to: 'cyan', deg: 90 }}
         size="xl"
         compact
       >
-        {"Submit"}
+        {'Submit'}
       </Button>
     </div>
-  );
+  )
 }
 
 const useStyles = createStyles((theme) => ({
@@ -76,27 +76,27 @@ const useStyles = createStyles((theme) => ({
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     fontWeight: 900,
     marginBottom: theme.spacing.md,
-    textAlign: "center",
+    textAlign: 'center',
 
-    [theme.fn.smallerThan("sm")]: {
+    [theme.fn.smallerThan('sm')]: {
       fontSize: 28,
-      textAlign: "left",
+      textAlign: 'left',
     },
   },
 
   description: {
-    textAlign: "center",
+    textAlign: 'center',
 
-    [theme.fn.smallerThan("sm")]: {
-      textAlign: "left",
+    [theme.fn.smallerThan('sm')]: {
+      textAlign: 'left',
     },
   },
-}));
+}))
 
 interface FeaturesGridProps {
-  title: React.ReactNode;
-  description: React.ReactNode;
-  data?: APIProps[];
+  title: React.ReactNode
+  description: React.ReactNode
+  data?: APIProps[]
 }
 
 export function APISetup({
@@ -104,10 +104,10 @@ export function APISetup({
   description,
   data = MOCKDATA,
 }: FeaturesGridProps) {
-  const { classes, theme } = useStyles();
+  const { classes, theme } = useStyles()
   const features = data.map((feature, index) => (
     <API {...feature} key={index} />
-  ));
+  ))
 
   return (
     <Container className={classes.wrapper}>
@@ -124,14 +124,14 @@ export function APISetup({
         cols={2}
         spacing={theme.spacing.xl * 5}
         breakpoints={[
-          { maxWidth: 980, cols: 2, spacing: "xl" },
-          { maxWidth: 755, cols: 1, spacing: "xl" },
+          { maxWidth: 980, cols: 2, spacing: 'xl' },
+          { maxWidth: 755, cols: 1, spacing: 'xl' },
         ]}
       >
         {features}
       </SimpleGrid>
     </Container>
-  );
+  )
 }
 
 export default APISetup
