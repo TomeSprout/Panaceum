@@ -7,54 +7,59 @@ import {
   useMantineTheme,
   createStyles,
   Button,
-} from "@mantine/core";
+} from '@mantine/core'
 import {
   IconLock,
   TablerIcon,
   IconArrowRightCircle,
   IconCopyOff,
   IconFilter,
-} from "@tabler/icons";
+} from '@tabler/icons'
 
 export const MOCKDATA = [
   {
     icon: IconArrowRightCircle,
-    title: "Sync",
-    description: "Perform two-way sync between Notion and Todoist",
+    title: 'Sync',
+    description: 'Perform two-way sync between Notion and Todoist',
   },
   {
     icon: IconCopyOff,
-    title: "Remove Duplicates",
-    description: "Identify and remove duplicate entries within Notion",
+    title: 'Remove Duplicates',
+    description: 'Identify and remove duplicate entries within Notion',
   },
   {
     icon: IconFilter,
-    title: "Log Filters",
-    description: "Collect all filters from Notion",
+    title: 'Log Filters',
+    description: 'Collect all filters from Notion',
   },
   {
     icon: IconLock,
-    title: "Lock Database",
-    description: "Lock and unlock databases within Notion",
+    title: 'Lock Database',
+    description: 'Lock and unlock databases within Notion',
   },
-];
+]
 
 interface FeatureProps {
-  icon: TablerIcon;
-  title: React.ReactNode;
-  description: React.ReactNode;
+  icon: TablerIcon
+  title: React.ReactNode
+  description: React.ReactNode
 }
 
 export function Feature({ icon: Icon, title, description }: FeatureProps) {
-  const theme = useMantineTheme();
+  const theme = useMantineTheme()
   return (
     <div>
-      <ThemeIcon variant="gradient" gradient={{ from: 'indigo', to: 'cyan', deg: 90 }} size={35} radius={"md"}>
+      <ThemeIcon
+        variant="gradient"
+        gradient={{ from: 'indigo', to: 'cyan', deg: 90 }}
+        size={35}
+        radius={'md'}
+      >
         <Icon size={25} stroke={2.25} />
       </ThemeIcon>
       <Text
         style={{ marginTop: theme.spacing.sm, marginBottom: 7 }}
-        size={"xl"}
+        size={'xl'}
       >
         {title}
       </Text>
@@ -64,14 +69,14 @@ export function Feature({ icon: Icon, title, description }: FeatureProps) {
       <br />
       <Button
         variant="gradient"
-        gradient={{ from: "indigo", to: "cyan", deg: 90 }}
+        gradient={{ from: 'indigo', to: 'cyan', deg: 90 }}
         size="xl"
         compact
       >
         {title}
       </Button>
     </div>
-  );
+  )
 }
 
 const useStyles = createStyles((theme) => ({
@@ -84,27 +89,27 @@ const useStyles = createStyles((theme) => ({
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     fontWeight: 900,
     marginBottom: theme.spacing.md,
-    textAlign: "center",
+    textAlign: 'center',
 
-    [theme.fn.smallerThan("sm")]: {
+    [theme.fn.smallerThan('sm')]: {
       fontSize: 28,
-      textAlign: "left",
+      textAlign: 'left',
     },
   },
 
   description: {
-    textAlign: "center",
+    textAlign: 'center',
 
-    [theme.fn.smallerThan("sm")]: {
-      textAlign: "left",
+    [theme.fn.smallerThan('sm')]: {
+      textAlign: 'left',
     },
   },
-}));
+}))
 
 interface FeaturesGridProps {
-  title: React.ReactNode;
-  description: React.ReactNode;
-  data?: FeatureProps[];
+  title: React.ReactNode
+  description: React.ReactNode
+  data?: FeatureProps[]
 }
 
 export function FeaturesGrid({
@@ -112,10 +117,10 @@ export function FeaturesGrid({
   description,
   data = MOCKDATA,
 }: FeaturesGridProps) {
-  const { classes, theme } = useStyles();
+  const { classes, theme } = useStyles()
   const features = data.map((feature, index) => (
     <Feature {...feature} key={index} />
-  ));
+  ))
 
   return (
     <Container className={classes.wrapper}>
@@ -132,12 +137,12 @@ export function FeaturesGrid({
         cols={2}
         spacing={theme.spacing.xl * 5}
         breakpoints={[
-          { maxWidth: 980, cols: 2, spacing: "xl" },
-          { maxWidth: 755, cols: 1, spacing: "xl" },
+          { maxWidth: 980, cols: 2, spacing: 'xl' },
+          { maxWidth: 755, cols: 1, spacing: 'xl' },
         ]}
       >
         {features}
       </SimpleGrid>
     </Container>
-  );
+  )
 }
