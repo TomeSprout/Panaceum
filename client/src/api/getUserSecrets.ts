@@ -1,4 +1,4 @@
-import { API_URL } from "./config"
+import { API_URL } from './config'
 
 export const getUserSecrets = async () => {
   const response = await fetch(`${API_URL}/secrets`, { credentials: 'include' })

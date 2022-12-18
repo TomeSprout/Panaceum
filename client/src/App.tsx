@@ -22,7 +22,7 @@ const App = (): JSX.Element => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<FrontPage />} />
-        <Route path='/auth' element={<Login />} />
+        <Route path="/auth" element={<Login />} />
         <Route
           path="apisetup"
           element={<APISetup title={'Panaceum'} description={''} />}

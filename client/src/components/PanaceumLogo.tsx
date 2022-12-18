@@ -6,7 +6,7 @@ const PanaceumLogo = () => {
   return (
     <Link to="/">
       <Tooltip label="Panaceum" position="bottom">
-        <ActionIcon size="xl" radius='xl'>
+        <ActionIcon size="xl" radius="xl">
           <img src={logo} alt="Panaceum logo" />
         </ActionIcon>
       </Tooltip>
