@@ -12,6 +12,8 @@ COPY . /app/
 
 RUN npm run build
 
+RUN pwd
+
 FROM nginx:alpine
 
 WORKDIR /usr/share/nginx/html
