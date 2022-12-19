@@ -110,7 +110,9 @@ export function FrontPage() {
             variant="default"
             color="gray"
             disabled
-            onClick={(event) => {
+            onClick={(
+              event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+            ) => {
               event.preventDefault()
               navigate('/apisetup', { replace: true })
             }}
@@ -121,7 +123,9 @@ export function FrontPage() {
             className={classes.control}
             size="lg"
             disabled
-            onClick={(event) => {
+            onClick={(
+              event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+            ) => {
               event.preventDefault()
               navigate('/auth', { replace: true })
             }}
