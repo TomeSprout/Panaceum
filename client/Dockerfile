@@ -4,15 +4,13 @@ ARG API_URL
 
 WORKDIR /app
 
-COPY package.json .
+COPY package*.json ./
 
-RUN npm install
+RUN npm ci --only=production
 
-COPY . /app/
+COPY . .
 
-RUN npm run build
-
-RUN pwd
+RUN npm build
 
 FROM nginx:alpine
 
@@ -21,7 +19,7 @@ WORKDIR /usr/share/nginx/html
 # Remove default nginx static assets
 RUN rm -rf ./*
 
-COPY --from=builder /app/dist .
+COPY --from=builder app/dist .
 
 COPY .nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
