@@ -7,8 +7,9 @@
     "clean": "rm -rf ./dist",
     "typecheck": "tsc --noEmit",
     "lint": "prettier --check .",
-    "lint:src": "prettier --check */src/**/*.{ts,tsx}",
-    "format": "prettier --write */src/**/*.{ts,tsx}"
+    "lint:src": "prettier --check '*/src/**/*.{ts,tsx,js,jsx,css,scss}'",
+    "format": "prettier --write .",
+    "format:src": "prettier --write '*/src/**/*.{ts,tsx,js,jsx,css,scss}'"
   },
   "repository": {
     "type": "git",
