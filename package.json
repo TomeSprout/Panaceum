@@ -1,21 +1,27 @@
 {
   "name": "panaceum",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Connect and Supercharge productivity with Notion and Todoist",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "fe": "cd client; npm run build"
+    "clean": "rm -rf ./dist",
+    "typecheck": "tsc --noEmit",
+    "lint": "prettier --check .",
+    "lint:src": "prettier --check */src/**/*.{ts,tsx}",
+    "format": "prettier --write */src/**/*.{ts,tsx}"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TomeSprout/panaceum.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "TomeSprout",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/TomeSprout/panaceum/issues"
   },
-  "homepage": "https://github.com/TomeSprout/panaceum#readme"
+  "homepage": "https://github.com/TomeSprout/panaceum#readme",
+  "devDependencies": {
+    "prettier": "^2.8.1"
+  }
 }
