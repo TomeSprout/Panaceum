@@ -7,7 +7,7 @@ import { connection as MongoDBConnection } from 'mongoose'
 import { databaseConnection } from './configuration/databaseConnection.config'
 import { corsOptions } from './configuration/corsOptions'
 
-dotenv.config()
+dotenv.config({ path: path.resolve('../.env') })
 
 const app = express.default()
 const PORT: string | number = (process.env.PORT as string) || 3500
