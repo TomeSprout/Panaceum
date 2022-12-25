@@ -10,7 +10,7 @@ import { corsOptions } from './configuration/corsOptions'
 dotenv.config({ path: path.resolve('../.env') })
 
 const app = express.default()
-const PORT: string | number = (process.env.PORT as string) || 3500
+const PORT: string | number = (process.env.SERVER_PORT as string) || 3500
 
 databaseConnection()
 mongoose.set('strictQuery', true)
