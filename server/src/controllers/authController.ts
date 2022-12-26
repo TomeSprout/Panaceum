@@ -43,7 +43,8 @@ const handleLogin = async (req: Request, res: Response) => {
     )
     const currentUser = { ...foundUser, refreshToken }
     usersDB.setUsers([...otherUsers, currentUser])
-    await
+    
+    res.json({ accessToken })
 
     res.json({ success: `User ${email} is logged in` })
   } else {
