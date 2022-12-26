@@ -43,7 +43,11 @@ const handleLogin = async (req: Request, res: Response) => {
     )
     const currentUser = { ...foundUser, refreshToken }
     usersDB.setUsers([...otherUsers, currentUser])
-    
+
+    res.cookie('jwt', refreshToken, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    })
     res.json({ accessToken })
 
     res.json({ success: `User ${email} is logged in` })
