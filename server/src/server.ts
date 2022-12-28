@@ -1,10 +1,11 @@
+import * as cors from 'cors'
 import * as dotenv from 'dotenv'
 import * as express from 'express'
-import * as cors from 'cors'
+import { connection as MongoDBConnection, set as MongoSet } from 'mongoose'
 import * as path from 'path'
-import { set as MongoSet, connection as MongoDBConnection } from 'mongoose'
-import { databaseConnection } from './configuration/databaseConnection.config'
+
 import { corsOptions } from './configuration/corsOptions'
+import { databaseConnection } from './configuration/databaseConnection.config'
 
 dotenv.config({ path: path.resolve('../.env') })
 
