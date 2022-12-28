@@ -17,4 +17,4 @@ router
   .get(expressjwt({ secret: jwtSecret, algorithms: ['HS256'] }), handleLogin)
   .post(handleRegistration)
 
-export { router }
+export = router
