@@ -1,5 +1,5 @@
 import { DocumentDefinition } from 'mongoose'
-import User, { UserSchema } from '../models/User'
+import User, { UserSchema } from '../models/User.model'
 
 export const login = async (user: DocumentDefinition<UserSchema>) => {
   try {

@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express'
 import bcrypt from 'bcrypt'
 import expressAsyncHandler from 'express-async-handler'
-import User from '../models/User'
+import User from '../models/User.model'
 
 const getUser = expressAsyncHandler(
   async (req: Request, res: Response): Promise<void> => {
