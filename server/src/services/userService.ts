@@ -4,7 +4,7 @@ import { DocumentDefinition } from 'mongoose'
 
 import User, { UserSchema } from '../models/User.model'
 
-export const register = async (user: DocumentDefinition<UserSchema>) => {
+const register = async (user: DocumentDefinition<UserSchema>) => {
   try {
     User.create(user)
   } catch (error) {
@@ -12,7 +12,7 @@ export const register = async (user: DocumentDefinition<UserSchema>) => {
   }
 }
 
-export const login = async (user: DocumentDefinition<UserSchema>) => {
+const login = async (user: DocumentDefinition<UserSchema>) => {
   try {
     const foundUser = await User.findOne({
       email: user.email,
@@ -61,3 +61,5 @@ export const login = async (user: DocumentDefinition<UserSchema>) => {
     throw error
   }
 }
+
+export { register, login }
