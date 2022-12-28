@@ -1,13 +1,6 @@
-import bcrypt from 'bcrypt'
 import { Request, Response } from 'express'
-import { Secret, sign } from 'jsonwebtoken'
 
-const usersDB = {
-  users: require('../models/users.json'),
-  setUsers: function (data: any) {
-    this.users = data
-  },
-}
+import { login } from '../services/userService'
 
 const handleLogin = async (req: Request, res: Response) => {
   const { email, password }: any = req.body
@@ -17,41 +10,19 @@ const handleLogin = async (req: Request, res: Response) => {
       .json({ message: 'Username and password are required' })
   }
 
-  const foundUser = usersDB.users.find((person: any) => person.email === email)
-  if (!foundUser) {
-    return res.sendStatus(401)
-  }
+  try {
+    const foundUser = await login(req.body)
+    res.status(200).send(foundUser)
 
-  const match = await bcrypt.compare(password, foundUser.password)
-
-  if (match) {
-    // Create JWTs
-    const accessToken = sign(
-      { email: foundUser.email },
-      process.env.ACCESS_TOKEN_SECRET as Secret,
-      { expiresIn: `30s` }
-    )
-    const refreshToken = sign(
-      { email: foundUser.email },
-      process.env.REFRESH_TOKEN_SECRET as Secret,
-      { expiresIn: `1d` }
-    )
-
-    const otherUsers = usersDB.users.filter(
-      (person: any) => person.email !== foundUser.email
-    )
-    const currentUser = { ...foundUser, refreshToken }
-    usersDB.setUsers([...otherUsers, currentUser])
-
-    res.cookie('jwt', refreshToken, {
+    res.cookie('jwt', foundUser.refreshToken, {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
     })
-    res.json({ accessToken })
 
-    res.json({ success: `User ${email} is logged in` })
-  } else {
-    res.sendStatus(401)
+    res.json({ token: foundUser.accessToken })
+    res.json({ success: `User ${foundUser.user.email} is logged in` })
+  } catch (error) {
+    return res.status(500).send('Error')
   }
 }
 
