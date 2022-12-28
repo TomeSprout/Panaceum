@@ -1,6 +1,15 @@
 import { Request, Response } from 'express'
 
-import { login } from '../services/userService'
+import { register, login } from '../services/userService'
+
+const handleRegistration = async (req: Request, res: Response) => {
+  try {
+    await register(req.body)
+    res.status(200).send('Creation successful')
+  } catch (error) {
+    return res.status(500).send('Error')
+  }
+}
 
 const handleLogin = async (req: Request, res: Response) => {
   const { email, password }: any = req.body
@@ -24,6 +33,7 @@ const handleLogin = async (req: Request, res: Response) => {
   } catch (error) {
     return res.status(500).send('Error')
   }
+
 }
 
-export { handleLogin }
+export { handleRegistration, handleLogin }
