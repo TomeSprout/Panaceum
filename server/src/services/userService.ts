@@ -6,6 +6,11 @@ import User, { UserSchema } from '../models/User.model'
 
 const register = async (user: DocumentDefinition<UserSchema>) => {
   try {
+    const duplicate = await User.findOne({ email: user.email }).lean().exec()
+
+    if (duplicate) {
+      return 'Duplicate'
+    }
     User.create(user)
   } catch (error) {
     throw error
