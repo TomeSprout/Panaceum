@@ -2,12 +2,19 @@ import { Request, Response } from 'express'
 
 import { register, login } from '../services/userService'
 
+const getErrorMessage = (error: unknown) => {
+  if (error instanceof Error) {
+    return error.message
+  }
+  return String(error)
+}
+
 const handleRegistration = async (req: Request, res: Response) => {
   try {
     await register(req.body)
     res.status(200).send('Creation successful')
   } catch (error) {
-    return res.status(500).send('Error')
+    return res.status(500).send(getErrorMessage(error))
   }
 }
 
@@ -31,7 +38,7 @@ const handleLogin = async (req: Request, res: Response) => {
     res.json({ token: foundUser.accessToken })
     res.json({ success: `User ${foundUser.user.email} is logged in` })
   } catch (error) {
-    return res.status(500).send('Error')
+    return res.status(500).send(getErrorMessage(error))
   }
 
 }
