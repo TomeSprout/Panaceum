@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt'
 import { Document, model, Schema } from 'mongoose'
 
 export interface UserSchema extends Document {
@@ -54,6 +55,15 @@ const userSchema = new Schema<UserSchema>({
     type: Boolean,
     default: false,
   },
+})
+
+const saltRounds: number = 10
+
+userSchema.pre('save', async function (next) {
+  const user = this
+  if (user.isModified('password')) {
+    user.password = await bcrypt.hash(user.password, saltRounds)
+  }
 })
 
 const User = model<UserSchema>('User', userSchema)
