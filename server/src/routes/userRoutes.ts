@@ -13,7 +13,7 @@ const jwtSecret = process.env.ACCESS_TOKEN_SECRET as Secret
 const router: Router = Router()
 
 router
-  .route('/users')
+  .route('/')
   .get(expressjwt({ secret: jwtSecret, algorithms: ['HS256'] }), handleLogin)
   .post(handleRegistration)
 
