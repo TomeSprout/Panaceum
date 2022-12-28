@@ -1,7 +1,6 @@
-import { Request, Response } from 'express'
 import bcrypt from 'bcrypt'
+import { Request, Response } from 'express'
 import { Secret, sign } from 'jsonwebtoken'
-import path from 'path'
 
 const usersDB = {
   users: require('../models/users.json'),
