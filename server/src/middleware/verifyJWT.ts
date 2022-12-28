@@ -1,4 +1,4 @@
-import { JwtPayload, Secret, verify } from 'jsonwebtoken'
+import { Secret, verify } from 'jsonwebtoken'
 import { config } from 'dotenv'
 import { NextFunction, Request, Response } from 'express'
 
