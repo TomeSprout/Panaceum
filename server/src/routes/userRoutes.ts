@@ -3,6 +3,7 @@ import { Router } from 'express'
 import { expressjwt } from 'express-jwt'
 import { Secret } from 'jsonwebtoken'
 
+import { handleLogin, handleRegistration } from '../controllers/authController'
 import { createNewUser, getUser } from '../controllers/usersController'
 
 config()
@@ -13,7 +14,7 @@ const router: Router = Router()
 
 router
   .route('/users')
-  .get(expressjwt({ secret: jwtSecret, algorithms: ['HS256'] }), getUser)
-  .post(createNewUser)
+  .get(expressjwt({ secret: jwtSecret, algorithms: ['HS256'] }), handleLogin)
+  .post(handleRegistration)
 
 export { router }
