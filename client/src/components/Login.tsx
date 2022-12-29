@@ -1,27 +1,10 @@
 import { Container, Divider, Grid } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
-import { useState } from 'react'
 import SignUpForm from './SignUpForm'
 import LoginForm from './LoginForm'
 
 const Login = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
   const largeScreen = useMediaQuery('(min-width: 960px)')
-
-  const loginRequest = async () => {
-    console.warn(email, password)
-    let auth = { email, password }
-    let request = fetch('http://localhost:3500/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify(auth),
-    })
-  }
 
   return (
     <Container size={largeScreen ? 'md' : 'xs'} my={largeScreen ? 350 : 40}>
@@ -33,11 +16,7 @@ const Login = () => {
           <Divider variant="solid" orientation="vertical" size="lg" />
         ) : null}
         <Grid.Col span={largeScreen ? 5 : 7}>
-          <LoginForm
-            setEmail={setEmail}
-            setPassword={setPassword}
-            login={loginRequest}
-          />
+          <LoginForm />
         </Grid.Col>
       </Grid>
     </Container>
