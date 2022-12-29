@@ -122,7 +122,6 @@ export function FrontPage() {
           <Button
             className={classes.control}
             size="lg"
-            disabled
             onClick={(
               event: React.MouseEvent<HTMLButtonElement, MouseEvent>
             ) => {
