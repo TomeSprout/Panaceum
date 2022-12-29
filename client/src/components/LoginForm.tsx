@@ -15,6 +15,7 @@ import { IconAt } from '@tabler/icons'
 
 import axios from '../api/axios'
 import AuthContext from '../context/AuthProvider'
+import { Navigate } from 'react-router-dom'
 
 const LOGIN_URL = '/auth'
 
@@ -24,6 +25,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
+  const [success, setSuccess] = useState(false)
 
   const userRef = useRef<HTMLInputElement>(null)
   const errRef = useRef<HTMLInputElement>(null)
@@ -96,6 +98,7 @@ const LoginForm = () => {
       >
         {errorMessage}
       </p>
+      {success && <Navigate to="/dashboard" replace={true} />}
       <Title
         align="center"
         sx={(theme) => ({
@@ -138,7 +141,7 @@ const LoginForm = () => {
               Forgot password?
             </Anchor>
           </Group>
-          <Button fullWidth mt="xl">
+          <Button type='submit' fullWidth mt="xl">
             Log in
           </Button>
         </form>
