@@ -16,6 +16,7 @@ databaseConnection()
 MongoSet('strictQuery', true)
 
 app.use(cors.default(corsOptions))
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use('/', require('./routes/root'))
