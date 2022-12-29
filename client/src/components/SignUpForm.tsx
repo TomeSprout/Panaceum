@@ -2,7 +2,7 @@ import { Button, Paper, PasswordInput, TextInput, Title } from '@mantine/core'
 
 const SignUpForm = () => {
   return (
-    <div>
+    <section>
       <Title
         align="center"
         sx={(theme) => ({
@@ -26,7 +26,7 @@ const SignUpForm = () => {
           Sign Up
         </Button>
       </Paper>
-    </div>
+    </section>
   )
 }
 
