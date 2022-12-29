@@ -14,15 +14,19 @@ const verifyJWT = (req: AuthRequest, res: Response, next: NextFunction) => {
   if (!authHeader) {
     return res.sendStatus(401)
   }
-  
+
   const token = authHeader.split(' ')[1]
-  verify(token, process.env.ACCESS_TOKEN_SECRET as Secret, (err, decoded: any) => {
-    if (err) {
-      return res.sendStatus(403)
+  verify(
+    token,
+    process.env.ACCESS_TOKEN_SECRET as Secret,
+    (err, decoded: any) => {
+      if (err) {
+        return res.sendStatus(403)
+      }
+      req.email = decoded.email
+      next()
     }
-    req.email = decoded.email
-    next()
-  })
+  )
 }
 
 export { verifyJWT }

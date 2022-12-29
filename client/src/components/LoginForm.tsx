@@ -141,7 +141,7 @@ const LoginForm = () => {
               Forgot password?
             </Anchor>
           </Group>
-          <Button type='submit' fullWidth mt="xl">
+          <Button type="submit" fullWidth mt="xl">
             Log in
           </Button>
         </form>

@@ -8,7 +8,7 @@ const getUser = expressAsyncHandler(
     // const user = await User.find().select('-password').lean()
     const { id } = req.body
     const user = await User.findById(id).exec()
-    
+
     if (!user) {
       res.status(400).json({ message: 'No user found' })
       return

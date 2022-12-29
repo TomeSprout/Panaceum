@@ -11,7 +11,7 @@ const getErrorMessage = (error: unknown) => {
 
 const handleRegistration = async (req: Request, res: Response) => {
   const { email, username, password } = req.body
-  
+
   try {
     const registration = await register(req.body)
 
@@ -22,7 +22,7 @@ const handleRegistration = async (req: Request, res: Response) => {
 
     if (registration === 'Duplicate') {
       res.status(409).json({ message: 'Duplicate user' })
-    } 
+    }
 
     res.status(200).send('Creation successful')
   } catch (error) {
@@ -51,7 +51,6 @@ const handleLogin = async (req: Request, res: Response) => {
   } catch (error) {
     return res.status(500).send(getErrorMessage(error))
   }
-
 }
 
 export { handleRegistration, handleLogin }
