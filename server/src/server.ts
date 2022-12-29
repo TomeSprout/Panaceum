@@ -1,25 +1,26 @@
+import * as cors from 'cors'
 import * as dotenv from 'dotenv'
 import * as express from 'express'
-import * as cors from 'cors'
+import { connection as MongoDBConnection, set as MongoSet } from 'mongoose'
 import * as path from 'path'
-import * as mongoose from 'mongoose'
-import { connection as MongoDBConnection } from 'mongoose'
-import { databaseConnection } from './configuration/databaseConnection.config'
-import { corsOptions } from './configuration/corsOptions'
 
-dotenv.config()
+import { corsOptions } from './configuration/corsOptions'
+import { databaseConnection } from './configuration/databaseConnection.config'
+
+dotenv.config({ path: path.resolve('../.env') })
 
 const app = express.default()
-const PORT: string | number = (process.env.PORT as string) || 3500
+const PORT: string | number = (process.env.SERVER_PORT as string) || 3500
 
 databaseConnection()
-mongoose.set('strictQuery', true)
+MongoSet('strictQuery', true)
 
 app.use(cors.default(corsOptions))
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use('/', require('./routes/root'))
-app.use('/users', require('./routes/userRoutes'))
+app.use('/auth', require('./routes/userRoutes'))
 app.use('*', (req, res) => {
   res.status(404)
 
