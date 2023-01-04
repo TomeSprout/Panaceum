@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use('/', require('./routes/root'))
-app.use('/auth', require('./routes/userRoutes'))
+app.use('/auth', require('./routes/auth.route'))
 app.use('*', (req, res) => {
   res.status(404)
 
