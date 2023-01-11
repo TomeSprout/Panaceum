@@ -23,9 +23,6 @@ const login = async (user: DocumentDefinition<UserSchema>) => {
       email: user.email,
     })
 
-    console.log(user.email, user.password, user.username)
-    console.log(foundUser)
-
     if (!foundUser) {
       throw new Error('Email is incorrect')
     }
