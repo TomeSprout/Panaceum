@@ -21,6 +21,7 @@ const login = async (user: DocumentDefinition<UserSchema>) => {
   try {
     const foundUser = await User.findOne({
       email: user.email,
+      username: user.username,
       password: user.password,
     })
 
@@ -50,11 +51,12 @@ const login = async (user: DocumentDefinition<UserSchema>) => {
           expiresIn: `1d`,
         }
       )
-
+      
       return {
         user: {
           _id: user._id,
           email: user.email,
+          username: user.username
         },
         accessToken: accessToken,
         refreshToken: refreshToken,
