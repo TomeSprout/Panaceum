@@ -39,15 +39,14 @@ const handleLogin = async (req: Request, res: Response) => {
 
   try {
     const foundUser = await login(req.body)
-    res.status(200).send(foundUser)
+    const accessToken = foundUser.accessToken
 
     res.cookie('jwt', foundUser.refreshToken, {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
     })
 
-    res.json({ token: foundUser.accessToken })
-    res.json({ success: `User ${foundUser.user.email} is logged in` })
+    return res.status(200).json({ accessToken })
   } catch (error) {
     return res.status(500).send(getErrorMessage(error))
   }
