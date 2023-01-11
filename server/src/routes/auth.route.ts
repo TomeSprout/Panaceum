@@ -13,6 +13,6 @@ const router: Router = Router()
 
 router.route('/')
 router.post('/signup', handleRegistration)
-router.post('/login', expressjwt({ secret: jwtSecret, algorithms: ['HS256'] }), handleLogin)
+router.post('/login', handleLogin)
 
 export = router
