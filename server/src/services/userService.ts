@@ -21,9 +21,10 @@ const login = async (user: DocumentDefinition<UserSchema>) => {
   try {
     const foundUser = await User.findOne({
       email: user.email,
-      username: user.username,
-      password: user.password,
     })
+
+    console.log(user.email, user.password, user.username)
+    console.log(foundUser)
 
     if (!foundUser) {
       throw new Error('Email is incorrect')
