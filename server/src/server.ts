@@ -1,3 +1,4 @@
+import cookieParser from 'cookie-parser'
 import * as cors from 'cors'
 import * as dotenv from 'dotenv'
 import * as express from 'express'
@@ -18,6 +19,7 @@ MongoSet('strictQuery', true)
 app.use(cors.default(corsOptions))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+app.use(cookieParser())
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use('/', require('./routes/root'))
 app.use('/auth', require('./routes/auth.route'))
