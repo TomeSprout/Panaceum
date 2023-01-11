@@ -37,7 +37,7 @@ const login = async (user: DocumentDefinition<UserSchema>) => {
         },
         process.env.ACCESS_TOKEN_SECRET as Secret,
         {
-          expiresIn: '2h',
+          expiresIn: '5m',
         }
       )
 
