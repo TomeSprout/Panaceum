@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import { register, login } from '../services/userService'
+import { login, register } from '../services/auth.service'
 
 const getErrorMessage = (error: unknown) => {
   if (error instanceof Error) {
