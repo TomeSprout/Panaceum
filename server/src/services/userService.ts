@@ -51,7 +51,10 @@ const login = async (user: DocumentDefinition<UserSchema>) => {
           expiresIn: `1d`,
         }
       )
-      
+
+      foundUser.refreshToken = refreshToken
+      await foundUser.save()
+
       return {
         user: {
           _id: user._id,
