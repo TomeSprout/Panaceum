@@ -8,6 +8,10 @@ const register = async (user: DocumentDefinition<UserSchema>) => {
   try {
     const duplicate = await User.findOne({ email: user.email }).lean().exec()
 
+    if (!user.email || !user.username || !user.password) {
+      return 'Missing Field'
+    }
+
     if (duplicate) {
       return 'Duplicate'
     }
