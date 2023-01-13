@@ -10,6 +10,7 @@ export interface UserSchema extends Document {
   guest: boolean
   active: boolean
   blacklist: boolean
+  refreshToken: string
 }
 
 const userSchema = new Schema<UserSchema>({
@@ -54,6 +55,9 @@ const userSchema = new Schema<UserSchema>({
   blacklist: {
     type: Boolean,
     default: false,
+  },
+  refreshToken: {
+    type: String,
   },
 })
 
