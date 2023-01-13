@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import { login, register } from '../services/auth.service'
+import { login, logout, register } from '../services/auth.service'
 
 const getErrorMessage = (error: unknown) => {
   if (error instanceof Error) {
@@ -50,4 +50,32 @@ const handleLogin = async (req: Request, res: Response) => {
   }
 }
 
-export { handleRegistration, handleLogin }
+const handleLogout = async (req: Request, res: Response) => {
+  try {
+    // ! Delete token in client
+
+    if (!req?.cookies?.jwt) {
+      return res.sendStatus(204)
+    }
+
+    const foundUser = await logout(req.cookies.jwt)
+    if (!foundUser) {
+      res.clearCookie('jwt', {
+        httpOnly: true,
+        secure: true,
+      })
+
+      return res.sendStatus(204)
+    }
+
+    res.clearCookie('jwt', {
+      httpOnly: true,
+      secure: true,
+    })
+    res.sendStatus(204)
+  } catch (error) {
+    return res.status(500).send(getErrorMessage(error))
+  }
+}
+
+export { handleRegistration, handleLogin, handleLogout }
