@@ -9,6 +9,8 @@ const handleRefreshToken = async (req: Request, res: Response) => {
   }
 
   const foundUser = await User.findOne({ refreshToken: req.cookies.jwt })
+    .lean()
+    .exec()
 
   if (!foundUser) {
     return res.sendStatus(403)
