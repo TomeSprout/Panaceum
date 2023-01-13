@@ -10,18 +10,15 @@ const getErrorMessage = (error: unknown) => {
 }
 
 const handleRegistration = async (req: Request, res: Response) => {
-  const { email, username, password } = req.body
-
   try {
     const registration = await register(req.body)
 
-    if (!email || !username || !password) {
-      res.status(400).json({ message: 'All fields are required' })
-      return
+    if (registration === 'Missing Field') {
+      return res.status(400).json({ message: 'All fields are required' })
     }
 
     if (registration === 'Duplicate') {
-      res.status(409).json({ message: 'Duplicate user' })
+      return res.status(409).json({ message: 'Duplicate user' })
     }
 
     res.status(200).send('Creation successful')
