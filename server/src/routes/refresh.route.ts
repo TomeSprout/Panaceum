@@ -4,9 +4,6 @@ import handleRefreshToken from '../controllers/refreshTokenController'
 
 const router: Router = Router()
 
-router.get(
-  '/',
-  handleRefreshToken
-)
+router.get('/', handleRefreshToken)
 
 export = router
