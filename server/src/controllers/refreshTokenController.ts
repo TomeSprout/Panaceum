@@ -3,18 +3,12 @@ import { Secret, sign } from 'jsonwebtoken'
 
 import User from '../models/User.model'
 
-const handleRefreshToken = (req: Request, res: Response) => {
-  const cookies = req.cookies
-
-  if (!cookies?.jwt) {
+const handleRefreshToken = async (req: Request, res: Response) => {
+  if (!req.cookies?.jwt) {
     return res.sendStatus(401)
   }
 
-  const refreshToken = cookies.jwt
-
-  const foundUser = User.findOne({
-    refreshToken: refreshToken,
-  })
+  const foundUser = await User.findOne({ refreshToken: req.cookies.jwt })
 
   if (!foundUser) {
     return res.sendStatus(403)
