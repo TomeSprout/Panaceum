@@ -23,9 +23,7 @@ const register = async (user: DocumentDefinition<UserSchema>) => {
 
 const login = async (user: DocumentDefinition<UserSchema>) => {
   try {
-    const foundUser = await User.findOne({
-      email: user.email,
-    })
+    const foundUser = await User.findOne({ email: user.email }).exec()
 
     if (!foundUser) {
       throw new Error('Email is incorrect')
@@ -58,7 +56,7 @@ const login = async (user: DocumentDefinition<UserSchema>) => {
         user: {
           _id: user._id,
           email: user.email,
-          username: user.username
+          username: user.username,
         },
         accessToken: accessToken,
         refreshToken: refreshToken,
