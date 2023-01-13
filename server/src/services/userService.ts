@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt'
-import { Secret, sign } from 'jsonwebtoken'
+import { Jwt, Secret, sign } from 'jsonwebtoken'
 import { DocumentDefinition } from 'mongoose'
 
 import User, { UserSchema } from '../models/User.model'
@@ -72,4 +72,21 @@ const login = async (user: DocumentDefinition<UserSchema>) => {
   }
 }
 
-export { register, login }
+const logout = async (jwt: Jwt) => {
+  try {
+    const foundUser = await User.findOne({ refreshToken: jwt }).exec()
+
+    if (!foundUser) {
+      return 'No Refresh Token'
+    }
+
+    foundUser.refreshToken = ''
+    await foundUser.save()
+
+    return foundUser
+  } catch (error) {
+    throw error
+  }
+}
+
+export { register, login, logout }
