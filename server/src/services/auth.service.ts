@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt'
-import { Secret, sign } from 'jsonwebtoken'
+import { Jwt, Secret, sign } from 'jsonwebtoken'
 import { DocumentDefinition } from 'mongoose'
 
 import User, { UserSchema } from '../models/User.model'
@@ -7,6 +7,10 @@ import User, { UserSchema } from '../models/User.model'
 const register = async (user: DocumentDefinition<UserSchema>) => {
   try {
     const duplicate = await User.findOne({ email: user.email }).lean().exec()
+
+    if (!user.email || !user.username || !user.password) {
+      return 'Missing Field'
+    }
 
     if (duplicate) {
       return 'Duplicate'
@@ -19,10 +23,7 @@ const register = async (user: DocumentDefinition<UserSchema>) => {
 
 const login = async (user: DocumentDefinition<UserSchema>) => {
   try {
-    const foundUser = await User.findOne({
-      email: user.email,
-      password: user.password,
-    })
+    const foundUser = await User.findOne({ email: user.email }).exec()
 
     if (!foundUser) {
       throw new Error('Email is incorrect')
@@ -37,7 +38,7 @@ const login = async (user: DocumentDefinition<UserSchema>) => {
         },
         process.env.ACCESS_TOKEN_SECRET as Secret,
         {
-          expiresIn: '2h',
+          expiresIn: '5m',
         }
       )
 
@@ -51,10 +52,14 @@ const login = async (user: DocumentDefinition<UserSchema>) => {
         }
       )
 
+      foundUser.refreshToken = refreshToken
+      await foundUser.save()
+
       return {
         user: {
           _id: user._id,
           email: user.email,
+          username: user.username,
         },
         accessToken: accessToken,
         refreshToken: refreshToken,
@@ -67,4 +72,21 @@ const login = async (user: DocumentDefinition<UserSchema>) => {
   }
 }
 
-export { register, login }
+const logout = async (jwt: Jwt) => {
+  try {
+    const foundUser = await User.findOne({ refreshToken: jwt }).exec()
+
+    if (!foundUser) {
+      return 'No Refresh Token'
+    }
+
+    foundUser.refreshToken = ''
+    await foundUser.save()
+
+    return foundUser
+  } catch (error) {
+    throw error
+  }
+}
+
+export { register, login, logout }
