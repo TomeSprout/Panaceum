@@ -55,7 +55,7 @@ const SignUpForm = () => {
         setPassword('')
         setUsername('')
         setSuccess(true)
-        console.log(success);
+        console.log(success)
       } catch (error: any) {
         if (!error?.response) {
           setErrorMessage('No server response')

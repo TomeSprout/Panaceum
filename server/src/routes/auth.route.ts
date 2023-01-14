@@ -1,6 +1,10 @@
 import { Router } from 'express'
 
-import { handleLogin, handleLogout, handleRegistration } from '../controllers/authController'
+import {
+  handleLogin,
+  handleLogout,
+  handleRegistration,
+} from '../controllers/authController'
 
 const router: Router = Router()
 

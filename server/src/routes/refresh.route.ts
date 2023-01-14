@@ -8,7 +8,7 @@ const router: Router = Router()
 
 const getTokenFromCookie = (req: Request) => {
   const cookies = req.cookies
-  
+
   if (!cookies) {
     return undefined
   }
