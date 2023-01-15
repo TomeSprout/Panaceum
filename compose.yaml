@@ -1,0 +1,30 @@
+services:
+  server:
+    build: ./server
+    env_file: .env
+    expose:
+      - ${SERVER_PORT}
+    environment:
+      API_HOST: ${API_HOST}
+      APP_SERVER_PORT: ${SERVER_PORT}
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+    volumes:
+      - ./server/src:/srv/app/panaceum-server/src
+    command: npm build
+
+  client:
+    build: ./client
+    env_file: .env
+    expose:
+      - ${VITE_CLIENT_PORT}
+    environment:
+      REACT_APP_PORT: ${VITE_CLIENT_PORT}
+    ports:
+      - ${VITE_CLIENT_PORT}:${VITE_CLIENT_PORT}
+    volumes:
+      - ./client/src:/srv/app/panaceum-client/src
+      - ./client/assets:/srv/app/panaceum-client/assets
+    links:
+      - server
+    command: npm run build
