@@ -1,7 +1,9 @@
 services:
   server:
-    build: ./server
-    env_file: .env
+    container_name: panaceum-server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
     expose:
       - ${SERVER_PORT}
     environment:
@@ -14,10 +16,10 @@ services:
     command: npm build
 
   client:
-    build: ./client
-    env_file: .env
-    expose:
-      - ${VITE_CLIENT_PORT}
+    container_name: panaceum-client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
     environment:
       REACT_APP_PORT: ${VITE_CLIENT_PORT}
     ports:
