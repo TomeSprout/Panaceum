@@ -9,7 +9,7 @@ RUN npm run build
 
 FROM nginx:alpine
 
-WORKDIR /usr/share/nginx/html
+WORKDIR /usr/share/node/app
 
 # Remove default nginx static assets
 RUN rm -rf ./*
