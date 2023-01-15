@@ -1,6 +1,7 @@
+import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { useContext, useEffect } from 'react'
 
-import { axiosPrivate } from '../api/axios'
+import { axiosPrivateInstance } from '../api/axios'
 import AuthContext from '../context/AuthProvider'
 import useRefreshToken from './useRefreshToken'
 
@@ -9,39 +10,41 @@ const useAxiosPrivate = () => {
   const { auth } = useContext(AuthContext)
 
   useEffect(() => {
-    const requestIntercept = axiosPrivate.interceptors.request.use(
-      (config) => {
-        if (!config.headers!['Authorization']) {
-          config.headers!['Authorization'] = `Bearer ${auth?.accessToken}`
+    const requestIntercept = axiosPrivateInstance.interceptors.request.use(
+      async (request: AxiosRequestConfig) => {
+        if (request.headers !== undefined) {
+          request.headers.Authorization = `Bearer ${auth?.accessToken}`
         }
 
-        return config
+        return request
       },
       (error) => Promise.reject(error)
     )
 
-    const responseIntercept = axiosPrivate.interceptors.response.use(
-      (response) => response,
+    const responseIntercept = axiosPrivateInstance.interceptors.response.use(
+      (response: AxiosResponse) => {
+        return response
+      },
       async (error) => {
-        const prevRequest = error?.config
+        const prevRequest = error.response.config
         if (error?.response?.status === 403 && !prevRequest?.sent) {
           prevRequest.sent = true
           const newAccessToken = await refresh()
-          prevRequest.headers['Authorization'] = `Bearer ${newAccessToken}`
+          prevRequest.headers.Authorization = `Bearer ${newAccessToken}`
 
-          return axiosPrivate(prevRequest)
+          return axiosPrivateInstance(prevRequest)
         }
         return Promise.reject(error)
       }
     )
 
     return () => {
-      axiosPrivate.interceptors.request.eject(requestIntercept)
-      axiosPrivate.interceptors.response.eject(responseIntercept)
+      axiosPrivateInstance.interceptors.request.eject(requestIntercept)
+      axiosPrivateInstance.interceptors.response.eject(responseIntercept)
     }
   }, [auth, refresh])
 
-  return axiosPrivate
+  return axiosPrivateInstance
 }
 
 export default useAxiosPrivate
