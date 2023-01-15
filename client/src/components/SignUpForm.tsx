@@ -6,7 +6,7 @@ import { useForm } from '@mantine/form'
 import axios from '../api/axios'
 import AuthContext from '../context/AuthProvider'
 
-const REGISTER_URL = '/auth'
+const REGISTER_URL = '/auth/signup'
 
 const SignUpForm = () => {
   const { setAuth } = useContext(AuthContext)
@@ -55,6 +55,7 @@ const SignUpForm = () => {
         setPassword('')
         setUsername('')
         setSuccess(true)
+        console.log(success)
       } catch (error: any) {
         if (!error?.response) {
           setErrorMessage('No server response')

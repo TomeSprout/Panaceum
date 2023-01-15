@@ -17,7 +17,7 @@ import axios from '../api/axios'
 import AuthContext from '../context/AuthProvider'
 import { Navigate } from 'react-router-dom'
 
-const LOGIN_URL = '/auth'
+const LOGIN_URL = '/auth/login'
 
 const LoginForm = () => {
   const { setAuth } = useContext(AuthContext)
@@ -35,9 +35,9 @@ const LoginForm = () => {
       email: '',
       password: '',
     },
-    validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-    },
+    // validate: {
+    //   email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+    // },
   })
 
   useEffect(() => {
