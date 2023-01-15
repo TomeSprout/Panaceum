@@ -15,6 +15,5 @@ WORKDIR /usr/share/node/app
 RUN rm -rf ./*
 
 COPY --from=builder ./app/panaceum-server/dist/ .
-COPY .nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
