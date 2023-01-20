@@ -37,8 +37,8 @@ const handleSecret = async (req: Request, res: Response) => {
     }
 
     res.status(201).json({ message: `Created new secret` })
-  } catch (error) {
-    res.status(400).json({ message: 'Invalid secret received' })
+  } catch (error: any) {
+    res.status(400).json({ message: error.message })
   }
 }
 
