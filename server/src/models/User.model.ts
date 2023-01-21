@@ -1,11 +1,17 @@
 import bcrypt from 'bcrypt'
 import { Document, model, Schema } from 'mongoose'
 
+export interface APISecret {
+  description: string
+  label: string
+  secret: string
+}
+
 export interface UserSchema extends Document {
   email: string
   username: string
   password: string
-  secrets: string[]
+  secrets: Array<APISecret>
   shelf: string[]
   guest: boolean
   active: boolean
@@ -62,19 +68,11 @@ const userSchema = new Schema<UserSchema>({
 })
 
 const saltRounds: number = 10
-const secretSaltRounds: number = 8
 
 userSchema.pre('save', async function (next) {
   const user = this
   if (user.isModified('password')) {
     user.password = await bcrypt.hash(user.password, saltRounds)
-  }
-
-  if (user.isModified('secrets')) {
-    user.secrets.map(async (secret: string) => {
-      const hashedSecret = await bcrypt.hash(secret, secretSaltRounds)
-      user.secrets.push(hashedSecret)
-    })
   }
 })
 
