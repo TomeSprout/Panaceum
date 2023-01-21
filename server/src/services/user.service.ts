@@ -1,6 +1,7 @@
+import bcrypt from 'bcrypt'
 import { DocumentDefinition } from 'mongoose'
 
-import User, { UserSchema } from '../models/User.model'
+import User, { APISecret, UserSchema } from '../models/User.model'
 
 const createSecret = async (user: DocumentDefinition<UserSchema>) => {
   try {
@@ -10,17 +11,26 @@ const createSecret = async (user: DocumentDefinition<UserSchema>) => {
       throw new Error('Email is incorrect')
     }
 
-    const duplicate = await User.find({
-      'secrets.secret': user.secrets,
+    const { description, label, secret } = user.secrets[0]
+    const secretSaltRounds: number = 8
+
+    foundUser.secrets.map((secretObject: APISecret) => {
+      const secretMatch = bcrypt.compareSync(secret, secretObject.secret)
+      if (secretMatch) {
+        throw new Error('Duplicate - Provided API Key already saved')
+      }
     })
 
-    if (duplicate) {
-      throw new Error('Provided API Key already saved')
-    }
-    foundUser?.secrets.push(user.secrets[0])
+    const hashedSecret = await bcrypt.hash(secret, secretSaltRounds)
+
+    foundUser?.secrets.push({
+      description: description,
+      label: label,
+      secret: hashedSecret,
+    })
     await foundUser.save()
 
-    return 'Secret created'
+    return 'New secret created'
   } catch (error) {
     throw error
   }
