@@ -7,6 +7,8 @@ import * as path from 'path'
 
 import { corsOptions } from './configuration/corsOptions'
 import { databaseConnection } from './configuration/databaseConnection.config'
+import { errorHandler } from './middleware/errorHandler'
+import { logEvents, logger } from './middleware/logger'
 
 dotenv.config()
 
@@ -16,6 +18,7 @@ const PORT: string | number = (process.env.PORT as string) || 3500
 databaseConnection()
 MongoSet('strictQuery', true)
 
+app.use(logger)
 app.use(cors.default(corsOptions))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
@@ -36,8 +39,17 @@ app.use('*', (req, res) => {
     res.type('txt').send('404 Not Found')
   }
 })
+app.use(errorHandler)
 
 MongoDBConnection.once('open', (): void => {
   console.log('Connected to MongoDB')
   app.listen(PORT, () => console.log(`⚡️ Server running on Port: ${PORT}`))
+})
+
+MongoDBConnection.on('error', (err): void => {
+  console.log(err)
+  logEvents(
+    `${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`,
+    'mongoErrorLog.log'
+  )
 })
