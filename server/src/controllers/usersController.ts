@@ -1,11 +1,11 @@
 import type { Request, Response } from 'express'
-import bcrypt from 'bcrypt'
 import expressAsyncHandler from 'express-async-handler'
+
 import User from '../models/User.model'
+import { createSecret } from '../services/user.service'
 
 const getUser = expressAsyncHandler(
   async (req: Request, res: Response): Promise<void> => {
-    // const user = await User.find().select('-password').lean()
     const { id } = req.body
     const user = await User.findById(id).exec()
 
@@ -17,49 +17,29 @@ const getUser = expressAsyncHandler(
   }
 )
 
-// @desc Create new Client Key
-// @route POST /users
+// @desc Create new Client API Key
+// @route POST /user/secrets
 // @access Private
-const createNewUser = expressAsyncHandler(
-  async (req: Request, res: Response): Promise<void> => {
-    const { email, username, password } = req.body
+const handleSecret = async (req: Request, res: Response) => {
+  const { email, username, secrets } = req.body
 
-    // Confirm data
-    if (!email || !username || !password) {
-      res.status(400).json({ message: 'All fields are required' })
-      return
-    }
-
-    // Check for duplicates
-    const duplicate = await User.findOne({ email }).lean().exec()
-
-    if (duplicate) {
-      res.status(409).json({ message: 'Duplicate user' })
-      return
-    }
-
-    // Hash password
-    const hashedPassword: string = await bcrypt.hash(password, 10) // salt rounds
-
-    const userObject: {
-      email: string
-      username: string
-      password: string
-    } = {
-      email,
-      username,
-      password: hashedPassword,
-    }
-
-    // Create and store new user
-    const user = await User.create(userObject)
-
-    if (user) {
-      res.status(201).json({ message: `Created new user - ${username}` })
-    } else {
-      res.status(400).json({ message: 'Invalid user data received' })
-    }
+  // Confirm data
+  if (!email || !username || !secrets) {
+    res.status(400).json({ message: 'All fields are required' })
+    return
   }
-)
 
-export { getUser, createNewUser }
+  try {
+    const createdSecret = await createSecret(req.body)
+
+    if (!createdSecret) {
+      return res.status(400).send('Secret creation failed')
+    }
+
+    res.status(201).json({ message: `Created new secret` })
+  } catch (error: any) {
+    res.status(400).json({ message: error.message })
+  }
+}
+
+export { getUser, handleSecret }
