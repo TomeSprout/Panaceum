@@ -11,7 +11,7 @@
     "watch": "tsc --watch",
     "dev": "concurrently \"npm rum watch\" \"nodemon dist/server\"",
     "start": "ts-node src/server.ts",
-    "build": "tsc",
+    "build": "tsc && cp -R ./src/views ./dist",
     "lint": "prettier --check .",
     "format": "prettier --write src/**/*.ts"
   },
