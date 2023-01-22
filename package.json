@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/TomeSprout/panaceum/issues"
   },
-  "homepage": "https://github.com/TomeSprout/panaceum#readme"
+  "homepage": "https://github.com/TomeSprout/panaceum#readme",
+  "devDependencies": {
+    "prettier": "^2.8.3"
+  }
 }
