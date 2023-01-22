@@ -1,11 +1,17 @@
 import bcrypt from 'bcrypt'
 import { Document, model, Schema } from 'mongoose'
 
+export interface APISecret {
+  description: string
+  label: string
+  secret: string
+}
+
 export interface UserSchema extends Document {
   email: string
   username: string
   password: string
-  secrets: string[]
+  secrets: Array<APISecret>
   shelf: string[]
   guest: boolean
   active: boolean

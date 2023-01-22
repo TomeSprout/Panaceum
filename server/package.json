@@ -5,6 +5,8 @@
   "main": "dist/server.js",
   "private": true,
   "scripts": {
+    "clean": "rm -rf ./dist",
+    "typecheck": "tsc --noEmit",
     "watch": "tsc --watch",
     "dev": "concurrently \"npm rum watch\" \"nodemon dist/server\"",
     "start": "ts-node src/server.ts",
