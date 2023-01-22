@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "fe": "cd client; npm run build"
+    "clean:FE": "rm -rf ./client/dist",
+    "clean:BE": "rm -rf ./server/dist",
+    "lint": "prettier --check .",
+    "lint:src": "prettier --check '*/src/**/*.{ts,tsx,js,jsx,css,scss}'",
+    "format": "prettier --write .",
+    "format:src": "prettier --write '*/src/**/*.{ts,tsx,js,jsx,css,scss}'"
   },
   "repository": {
     "type": "git",
