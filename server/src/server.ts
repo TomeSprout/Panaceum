@@ -8,10 +8,10 @@ import * as path from 'path'
 import { corsOptions } from './configuration/corsOptions'
 import { databaseConnection } from './configuration/databaseConnection.config'
 
-dotenv.config({ path: path.resolve('../.env') })
+dotenv.config()
 
 const app = express.default()
-const PORT: string | number = (process.env.SERVER_PORT as string) || 3500
+const PORT: string | number = (process.env.PORT as string) || 3500
 
 databaseConnection()
 MongoSet('strictQuery', true)
