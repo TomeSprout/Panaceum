@@ -16,7 +16,7 @@
     "@mantine/form": "^5.9.6",
     "@mantine/hooks": "^5.9.2",
     "@mantine/modals": "^5.9.5",
-    "@mantine/notifications": "^5.9.5",
+    "@mantine/notifications": "^7.1.7",
     "@mantine/prism": "^6.0.17",
     "@tabler/icons": "^2.17.0",
     "axios": "1.4.0",
